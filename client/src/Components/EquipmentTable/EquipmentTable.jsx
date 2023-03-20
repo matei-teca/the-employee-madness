@@ -15,6 +15,17 @@ const EquipmentTable = () => (
       <tbody>
 
           <tr>
+            <td><input/></td>
+            <td><input/></td>
+            <td><input/></td>
+            <td>
+              <button type="button" onClick={() => alert("nothing yet")}>
+                Add equipment
+              </button>
+            </td>
+          </tr>
+
+          <tr>
             <td></td>
             <td></td>
             <td></td>

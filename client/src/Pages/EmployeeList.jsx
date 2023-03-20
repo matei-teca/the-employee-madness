@@ -5,6 +5,7 @@ import { useAtom } from "jotai";
 import state from "../AtomStates";
 import SearchBy from "../Components/SearchBy";
 import SortBy from "../Components/SortBy";
+import Layout from "./Layout";
 
 const fetchEmployees = () => {
   return fetch("/api/employees").then((res) => res.json());

@@ -1,5 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import SearchBy from "../../Components/SearchBy";
+import SortBy from "../../Components/SortBy";
 
 import "./Layout.css";
 
@@ -18,6 +19,7 @@ const Layout = () => (
         </li>
       </ul>
     </nav>
+    <SortBy/>
     <Outlet />
   </div>
 );

@@ -32,9 +32,9 @@ export default function SearchBy() {
   return (
     <div>
         {/* <div>SearchBy</div> */}
-        <input ref = {inputRef} type="text" placeholder="choose a Position or Level" className='input'/>
-        <button onClick={handleByPosition}>Filter by Position</button>
+        <input ref = {inputRef} type="text" placeholder="Level / Position" className='input'/>
         <button onClick={handleByLevel}>Filter by Level</button>
+        <button onClick={handleByPosition}>Filter by Position</button>
     </div>
   )
 }

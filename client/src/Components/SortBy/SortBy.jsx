@@ -6,7 +6,7 @@ export default function SortBy() {
 
     const [employees, setEmployees] = useAtom(state.employees);
 
-    const handleSortByName = (sorter) => {
+    const handleSortByName = (criteria) => {
 
         fetch("/api/employees").then((res) => res.json())
             .then((employees) => {
@@ -18,17 +18,17 @@ export default function SortBy() {
                         let nameA = a.name.toUpperCase().split(" ");
                         let nameB = b.name.toUpperCase().split(" "); 
 
-                            if (sorter === "fname"){
+                            if (criteria === "fname"){
                                 nameA = nameA[0];
                                 nameB = nameB[0];
                             }
             
-                            if (sorter === "lname"){
+                            if (criteria === "lname"){
                                 nameA = nameA[nameA.length-1];
                                 nameB = nameB[nameB.length-1];
                             }
 
-                            if (sorter === "mdlname"){
+                            if (criteria === "mdlname"){
                                 nameA = nameA[1];
                                 nameB = nameB[1];
                             }
@@ -50,8 +50,31 @@ export default function SortBy() {
         })
     }
 
-    
+    const handleSortByStatus = (criteria) => {
+        fetch("/api/employees").then((res) => res.json())
+            .then((employees) => {
+                setEmployees(employees);
+                
+                setEmployees(employees => {
+        
+                    const newArr = [...employees].sort((a,b) => { 
 
+                            if (a[criteria] < b[criteria]) {
+                                return -1;
+                            }
+                            if (a[criteria] > b[criteria]) {
+                                return 1;
+                            }
+            
+                            // names must be equal
+                            return 0; 
+
+                    })
+                    
+                    return newArr
+                })
+        })
+    }
 
   return (
     <div>
@@ -59,8 +82,8 @@ export default function SortBy() {
         <button onClick={() => handleSortByName("fname")}>First name</button>
         <button onClick={() => handleSortByName("lname")}>Last name</button>
         <button onClick={() => handleSortByName("mdlname")}>Middle name</button>
-        <button>Position</button>
-        <button>Level</button>
+        <button onClick={() => handleSortByStatus("level")}>Level</button>
+        <button onClick={() => handleSortByStatus("position")}>Position</button>
     </div>
 
   )

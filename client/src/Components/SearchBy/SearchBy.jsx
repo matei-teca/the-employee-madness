@@ -31,8 +31,8 @@ export default function SearchBy() {
     }
 
   return (
-    <div>
-        {/* <div>SearchBy</div> */}
+    <div style={{display:"flex", marginInline: "10%", marginBlock: "3%"}}>
+        <div>SearchBy: </div>
         <input ref = {inputRef} type="text" placeholder="Level / Position" className='input'/>
         <button onClick={handleByLevel}>Filter by Level</button>
         <button onClick={handleByPosition}>Filter by Position</button>

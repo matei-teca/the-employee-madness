@@ -3,6 +3,8 @@ import Loading from "../Components/Loading";
 import EmployeeTable from "../Components/EmployeeTable";
 import { useAtom } from "jotai";
 import state from "../AtomStates";
+import SearchBy from "../Components/SearchBy";
+import SortBy from "../Components/SortBy";
 
 const fetchEmployees = () => {
   return fetch("/api/employees").then((res) => res.json());
@@ -38,7 +40,11 @@ const EmployeeList = () => {
     return <Loading />;
   }
 
-  return <EmployeeTable employees={employees} onDelete={handleDelete} />;
+  return <>
+    <SearchBy/>
+    <SortBy />
+    <EmployeeTable employees={employees} onDelete={handleDelete} />
+  </>
 };
 
 export default EmployeeList;

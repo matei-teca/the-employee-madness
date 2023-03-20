@@ -77,8 +77,8 @@ export default function SortBy() {
     }
 
   return (
-    <div>
-        <div>SortBy</div>
+    <div style={{display:"flex", marginInline: "10%", marginBlock: "3%"}}>
+        <div>SortBy: </div>
         <button onClick={() => handleSortByName("fname")}>First name</button>
         <button onClick={() => handleSortByName("lname")}>Last name</button>
         <button onClick={() => handleSortByName("mdlname")}>Middle name</button>

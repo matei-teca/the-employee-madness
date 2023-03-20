@@ -1,7 +1,4 @@
 import { Outlet, Link } from "react-router-dom";
-import SearchBy from "../../Components/SearchBy";
-import SortBy from "../../Components/SortBy";
-
 import "./Layout.css";
 
 const Layout = () => (
@@ -11,7 +8,6 @@ const Layout = () => (
         <li className="grow">
           <Link to="/">Employees</Link>
         </li>
-        <li className="searchBy"><SearchBy/></li>
         <li>
           <Link to="/create">
             <button type="button">Create Employee</button>
@@ -19,7 +15,6 @@ const Layout = () => (
         </li>
       </ul>
     </nav>
-    <SortBy/>
     <Outlet />
   </div>
 );

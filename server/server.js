@@ -58,6 +58,8 @@ app.delete("/api/employees/:id", async (req, res, next) => {
   }
 });
 
+app.post("/api/equipments", )
+
 const main = async () => {
   await mongoose.connect(MONGO_URL);
 

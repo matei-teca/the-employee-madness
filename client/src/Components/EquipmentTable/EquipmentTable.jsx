@@ -19,6 +19,16 @@ const EquipmentTable = () => {
     setAmount(e.target.value);
   }
 
+  const handleAddEquipment = () => {
+    const data = {name, type, amount};
+
+    fetch("/api/equipments", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(data)
+    })
+  }
+
 
   return (
     <div className="EmployeeTable">
@@ -38,7 +48,7 @@ const EquipmentTable = () => {
             <td><input type = "text" placeholder = "Type" onChange={handleTypeInput}/></td>
             <td><input type = "text" placeholder = "Amount" onChange={handleAmountInput}/></td>
             <td>
-              <button type="button" onClick={() => alert("nothing yet")}>
+              <button type="button" onClick={handleAddEquipment}>
                 Add equipment
               </button>
             </td>

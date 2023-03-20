@@ -14,6 +14,9 @@ if (!MONGO_URL) {
 const app = express();
 app.use(express.json());
 
+const cors = require("cors");
+app.use(cors());
+
 app.get("/api/employees/", async (req, res) => {
   const employees = await EmployeeModel.find().sort({ created: "desc" });
   return res.json(employees);
@@ -58,7 +61,24 @@ app.delete("/api/employees/:id", async (req, res, next) => {
   }
 });
 
-app.post("/api/equipments", )
+app.post("/api/equipments",(req, res) => {
+
+  let name = req.body.name;
+  let type = req.body.type;
+  let amount = req.body.amount;
+
+  const equipment = new EquipmentModel({
+    name,
+    type,
+    amount
+  })
+
+  equipment.save()
+
+  .then(equipment => res.status(200).send({message: "The equipment was added to the database"}))
+  .catch(err => res.status(400).send({message: "The equipment was NOT added to the database", error: err}))
+
+})
 
 const main = async () => {
   await mongoose.connect(MONGO_URL);

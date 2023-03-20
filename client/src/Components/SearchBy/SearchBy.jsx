@@ -12,6 +12,7 @@ export default function SearchBy() {
         fetch("/api/employees").then((res) => res.json())
             .then((employees) => {
                 setEmployees(employees);
+                
                 setEmployees((employees) => {
                     return employees.filter((employee) => employee.position.toUpperCase() === inputRef.current.value.toUpperCase());
                 })

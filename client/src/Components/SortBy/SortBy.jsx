@@ -6,42 +6,59 @@ export default function SortBy() {
 
     const [employees, setEmployees] = useAtom(state.employees);
 
-    const handleSort = (sorter) => {
-        console.log("works");
+    const handleSortByName = (sorter) => {
 
-        setEmployees(employees => {
-            // return employees.sort((a,b) => a.name.split(" ")[0].localeCompare(b.name.split(" ")[0]))
+        fetch("/api/employees").then((res) => res.json())
+            .then((employees) => {
+                setEmployees(employees);
+                
+                setEmployees(employees => {
+        
+                    const newArr = [...employees].sort((a,b) => { 
+                        let nameA = a.name.toUpperCase().split(" ");
+                        let nameB = b.name.toUpperCase().split(" "); 
 
-            // return employees.sort((a,b) => {
-            //         if(a.firstname < b.firstname) { return -1; }
-            //         if(a.firstname > b.firstname) { return 1; }
-            //         return 0;
-            //     }
-            // )
+                            if (sorter === "fname"){
+                                nameA = nameA[0];
+                                nameB = nameB[0];
+                            }
+            
+                            if (sorter === "lname"){
+                                nameA = nameA[nameA.length-1];
+                                nameB = nameB[nameB.length-1];
+                            }
 
-            return employees.sort((a,b) => { 
-                const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-                const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-                if (nameA < nameB) {
-                    return -1;
-                }
-                if (nameA > nameB) {
-                    return 1;
-                }
+                            if (sorter === "mdlname"){
+                                nameA = nameA[1];
+                                nameB = nameB[1];
+                            }
+            
+                            if (nameA < nameB) {
+                                return -1;
+                            }
+                            if (nameA > nameB) {
+                                return 1;
+                            }
+            
+                            // names must be equal
+                            return 0; 
 
-                // names must be equal
-                return 0; 
-            })
+                    })
+                    
+                    return newArr
+                })
         })
-
     }
+
+    
+
 
   return (
     <div>
         <div>SortBy</div>
-        <button onClick={() => handleSort("name")}>First name</button>
-        <button>Last name</button>
-        <button>Middle name</button>
+        <button onClick={() => handleSortByName("fname")}>First name</button>
+        <button onClick={() => handleSortByName("lname")}>Last name</button>
+        <button onClick={() => handleSortByName("mdlname")}>Middle name</button>
         <button>Position</button>
         <button>Level</button>
     </div>

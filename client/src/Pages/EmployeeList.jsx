@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Loading from "../Components/Loading";
 import EmployeeTable from "../Components/EmployeeTable";
+import { useAtom } from "jotai";
+import state from "../AtomStates";
 
 const fetchEmployees = () => {
   return fetch("/api/employees").then((res) => res.json());
@@ -14,7 +16,7 @@ const deleteEmployee = (id) => {
 
 const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
-  const [employees, setEmployees] = useState(null);
+  const [employees, setEmployees] = useAtom(state.employees);
 
   const handleDelete = (id) => {
     deleteEmployee(id);

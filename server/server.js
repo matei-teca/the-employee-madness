@@ -66,11 +66,13 @@ app.post("/api/equipments",(req, res) => {
   let name = req.body.name;
   let type = req.body.type;
   let amount = req.body.amount;
+  let created = Date.now();
 
   const equipment = new EquipmentModel({
     name,
     type,
-    amount
+    amount,
+    created
   })
 
   equipment.save()
@@ -78,6 +80,11 @@ app.post("/api/equipments",(req, res) => {
   .then(equipment => res.status(200).send({message: "The equipment was added to the database"}))
   .catch(err => res.status(400).send({message: "The equipment was NOT added to the database", error: err}))
 
+})
+
+app.get("/api/equipments", async (req, res) => {
+  const equipments = await EquipmentModel.find().sort({ created: "desc" });
+  res.json(equipments)
 })
 
 const main = async () => {

@@ -13,7 +13,7 @@ const EmployeeTable = ({ employees, onDelete }) => (
         </tr>
       </thead>
       <tbody>
-        {employees.map((employee) => (
+        {employees?.map((employee) => (
           <tr key={employee._id}>
             <td>{employee.name}</td>
             <td>{employee.level}</td>

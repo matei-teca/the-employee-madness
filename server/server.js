@@ -87,6 +87,13 @@ app.get("/api/equipments", async (req, res) => {
   res.json(equipments)
 })
 
+app.get("/api/employee/:fullName", async (req, res) => {
+  const employee = await EmployeeModel.find({name: req.params.fullName});
+  return res.json(employee);
+
+  // res.json({message: "works"})
+});
+
 const main = async () => {
   await mongoose.connect(MONGO_URL);
 

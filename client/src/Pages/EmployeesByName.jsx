@@ -14,9 +14,23 @@ const fetchEmployees = () => {
     return fetch("/api/employees").then((res) => res.json());
 };
 
+const deleteEmployee = (id) => {
+    return fetch(`/api/employees/${id}`, { method: "DELETE" }).then((res) =>
+      res.json()
+    );
+  };
+
 export default function EmployeeByName() {
     const { search } = useParams();
     const [employees, setEmployees] = useState(null);
+
+    const handleDelete = (id) => {
+        deleteEmployee(id);
+    
+        setEmployees((employees) => {
+          return employees.filter((employee) => employee._id !== id);
+        });
+      };    
 
     const filterByRoute = () => {
         // console.log(employees);
@@ -34,7 +48,8 @@ export default function EmployeeByName() {
     
       return (
       <>
-        <EmployeeTable employees={employees}/>
+        <div style={{fontWeight: "bold", marginLeft:"10px"}}>Employees with the name "{search}":</div>
+        <EmployeeTable employees={employees} onDelete={handleDelete}/>
         </>
       );
 }

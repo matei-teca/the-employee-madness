@@ -17,17 +17,17 @@ const deleteEmployee = (id) => {
   );
 };
 
-const addAttendance = () => {
-  fetch(`/api/attendance`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({isPresent: false}),
-  })
-  .then(res => res.json())
-  .then(data => console.log(data))
-}
+// const addAttendance = () => {
+//   fetch(`/api/attendance`, {
+//     method: "PATCH",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({isPresent: false}),
+//   })
+//   .then(res => res.json())
+//   .then(data => console.log(data))
+// }
 
 const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
@@ -67,7 +67,7 @@ const EmployeeList = () => {
         setEmployees(employees);
       });
 
-      addAttendance();
+      // addAttendance();
   }, []);
 
   if (loading) {

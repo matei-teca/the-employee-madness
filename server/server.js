@@ -94,18 +94,19 @@ app.get("/api/employee/:fullName", async (req, res) => {
 
 
 // app.patch("/api/attendance", async (req,res) => {
+
   // try {
-  //   const employee = await EmployeeModel.findOneAndUpdate(
-  //     { _id: req.params.id },
-  //     { present: req.body.isPresent },
-  //     { new: true }
-  //   );
-  //   return res.json(employee);
+  //   db.employees.update(
+  //     {                     
+  //       present: false,
+  //     }
+  //  )
+  // return res.json({message: "Collection updated"});
+ 
   // } catch (err) {
   //   return next(err);
   // }
 
-  // res.json({message: "PATCH is prepared"});
 // })
 
 app.patch("/api/attendance/:id", async (req,res) => {

@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import "./EmployeeTable.css";
 
+import * as React from 'react';
+import Typography from '@mui/material/Typography';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import {useState, useEffect, useRef} from "react";
 
 
 
@@ -20,6 +25,20 @@ const EmployeeTable = ({ employees, onDelete, handleCheckBox }) => {
   //     )
   // }
 
+  const [page, setPage] = useState(1);
+  const [currTenEmployees, setCurrTenEmployees] = useState(employees.slice(0, 10))
+
+  const handleTenEmployees = (currPage) => {
+    setCurrTenEmployees(employees.slice((currPage-1)*10, (currPage-1)*10+10))
+  }
+
+  const handleChange = (event, value) => {
+    setPage(value);
+    handleTenEmployees(value);
+  };
+
+
+
 return (
   <div className="EmployeeTable">
     <table>
@@ -34,7 +53,21 @@ return (
         </tr>
       </thead>
       <tbody>
-        {employees?.map((employee) => {
+       
+        { 
+      
+          currTenEmployees.map(employee =>{
+            return(
+              <tr key={employee._id} id={employee._id}>
+              <td>{employee.name}</td>
+            </tr>
+            )
+
+          })
+
+        }
+
+        {/* {employees?.map((employee) => {
           return(
           <tr key={employee._id} id={employee._id}>
             <td>{employee.name}</td>
@@ -55,17 +88,24 @@ return (
                 Delete
               </button>
             </td>
+
+          </tr>
+        )})} */}
+      </tbody>
+
+    </table>
+      <Stack spacing={2}>
+        <Typography>{page}</Typography>
+        <Pagination count={10} page={page} onChange={handleChange} />
+      </Stack>
+  </div>
+);
+}
+
             {/* <td>
               {(()=>{  
                 return getEachEquipment(employee);
               })()}
             </td> */}
-          </tr>
-        )})}
-      </tbody>
-    </table>
-  </div>
-);
-}
 
 export default EmployeeTable;

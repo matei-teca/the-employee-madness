@@ -32,6 +32,7 @@ const deleteEmployee = (id) => {
 const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useAtom(state.employees);
+  const [currEmployeeEquipment, setCurrEmployeeEquipment] = useState([]);
 
   const handleDelete = (id) => {
     deleteEmployee(id);

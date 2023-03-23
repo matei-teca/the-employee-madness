@@ -104,11 +104,12 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
          <div className="control">
          <label htmlFor="position">Equipment:</label>
           <ul>
-          {currEmployeeEquipment?.map((item, index) => {
+
+          {currEmployeeEquipment.length > 0 ? currEmployeeEquipment?.map((item, index) => {
             return(
               <li key={index}>{item.name}</li>
             )
-          })}
+          }) : <div>No equipment yet</div>}
 {/* 
           <li>ttest</li>
           <li>ttest</li>

@@ -23,14 +23,16 @@ const EmployeeTable = ({ employees, onDelete, handleCheckBox }) => {
   //       })}
   //       </div>
   //     )
-  // }
+  // }`
 
   const [page, setPage] = useState(1);
-  const [currTenEmployees, setCurrTenEmployees] = useState(employees.slice(0, 10));
+  const [currTenEmployees, setCurrTenEmployees] = useState(employees.length > 9 ? employees.slice(0, 10) : employees);
   const [togglePagination, setTogglePagination] = useState(true);
 
   const handleTenEmployees = (currPage) => {
-    setCurrTenEmployees(employees.slice((currPage-1)*10, (currPage-1)*10+10))
+    if(employees.length > 9){
+      setCurrTenEmployees(employees.slice((currPage-1)*10, (currPage-1)*10+10))
+    }
   }
 
   const handleChange = (event, value) => {

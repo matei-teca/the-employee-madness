@@ -49,7 +49,7 @@ export default function EmployeeByName() {
       return (
       <>
         <div style={{fontWeight: "bold", marginLeft:"10px"}}>Employees with the name "{search}":</div>
-        <EmployeeTable employees={employees} onDelete={handleDelete}/>
+        {employees && <EmployeeTable employees={employees} onDelete={handleDelete}/>}
         </>
       );
 }

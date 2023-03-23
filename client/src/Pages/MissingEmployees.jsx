@@ -49,7 +49,7 @@ export default function MissingEmployees() {
       return (
       <>
         <div style={{fontWeight: "bold", marginLeft:"10px"}}>Missing employees:</div>
-        <EmployeeTable employees={employees} onDelete={handleDelete}/>
+         {employees && <EmployeeTable employees={employees} onDelete={handleDelete}/>}
         </>
       );
 }

@@ -51,6 +51,25 @@ app.patch("/api/employees/:id", async (req, res, next) => {
   }
 });
 
+app.patch("/api/equip/employees/:id", async (req, res, next) => {
+
+  try {
+    const findEmployee = await EmployeeModel.findOne({_id: req.params.id});
+    const existingEmployeeEquipment = findEmployee.equipment;
+    existingEmployeeEquipment.push(req.body.selectedEquipmentId);
+
+    const employee = await EmployeeModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { equipment: existingEmployeeEquipment },
+      { new: true }
+    );
+    return res.json(employee);
+  } catch (err) {
+    return next(err);
+  }
+
+})
+
 app.delete("/api/employees/:id", async (req, res, next) => {
   try {
     const employee = await EmployeeModel.findById(req.params.id);

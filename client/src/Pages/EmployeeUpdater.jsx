@@ -55,6 +55,7 @@ const EmployeeUpdater = () => {
         onSave={handleUpdateEmployee}
         disabled={updateLoading}
         onCancel={() => navigate("/")}
+        currEmployeeId = {id}
       />
     </>
   );

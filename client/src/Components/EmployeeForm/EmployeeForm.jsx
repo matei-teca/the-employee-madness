@@ -1,8 +1,33 @@
 import "./EmployeeForm.css";
-import { useAtom } from "jotai";
-import state from "../../AtomStates";
+import React, {useState, useEffect, useRef} from "react";
 
-const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
+
+const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) => {
+
+  const [equipments, setEquipments] = useState(null);
+  const equipmentInputRef = useRef(null);
+  const [currEmployeeEquipment, setCurrEmployeeEquipment] = useState([]);
+
+  //add to currEq
+  //display currEq
+
+  //fetch currEq in Update component
+
+  useEffect(() => {
+
+    (async () => {
+      try {
+        const getResponse = await fetch("http://localhost:8080/api/equipments");
+        const getData = await getResponse.json();
+        setEquipments(await getData);
+  
+      } catch (e) {
+        console.log(e);
+      }
+    })()
+
+  }, [])  
+
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -16,6 +41,32 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
 
     return onSave(employee);
   };
+
+  const handleAddEquipment = (e) => {
+    const inputValue = equipmentInputRef.current.value;
+
+    let selectedEquipmentId;
+    equipments.forEach(item => {
+      if(item.name === inputValue){
+        selectedEquipmentId = item._id;
+      }
+    })
+
+    // console.log(selectedEquipmentId);
+
+    // setCurrEmployeeEquipment(prev => [...prev, selectedEquipmentId])
+    // console.log(currEmployeeEquipment);
+
+    fetch(`/api/equip/employees/${currEmployeeId}`, {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({selectedEquipmentId})
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
+      
+  }
 
   return (
     <form className="EmployeeForm" onSubmit={onSubmit}>
@@ -70,17 +121,17 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
             <input
               defaultValue={null}
               name="equipment"
-              id="equipment"
+              ref={equipmentInputRef}
               list = "equipmentDataList"
               style ={{width: "200px"}}
             />
             <datalist id = "equipmentDataList">
-              <option value="test"/>
-              <option value="test"/>
-              <option value="test"/>
+              {equipments?.map(item => {
+                return <option key={item._id} value={item.name}/>
+              })}
             </datalist>
             {/* <div className="add-equipment--btnn">Add Equipment</div> */}
-            <button type="button" className="add-equipment--button">Add Equipment</button>
+            <button type="button" className="add-equipment--button" onClick={handleAddEquipment}>Add Equipment</button>
         </div>
 
         </div>

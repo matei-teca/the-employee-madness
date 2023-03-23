@@ -12,6 +12,7 @@ import EmployeeUpdater from "./Pages/EmployeeUpdater";
 import EquipmentList from "./Pages/EquipmentList";
 import EmployeeByFullName from "./Pages/EmployeeByFullName";
 import EmployeeByName from "./Pages/EmployeesByName";
+import MissingEmployees from "./Pages/MissingEmployees";
 
 import "./index.css";
 import TableTest from "./Pages/TableTest";
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "/employees/:search",
         element: <EmployeeByName />,
+      },
+      {
+        path: "/missing",
+        element: <MissingEmployees />,
       },
     ],
   },

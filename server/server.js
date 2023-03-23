@@ -158,8 +158,6 @@ app.get("/api/employee/:id/equipment", async (req, res, next) => {
       
     });
 
-
-
     return res.json({currEquipmentResponse: convertedEquipmentArray})
   } catch (err) {
     return next(err); 

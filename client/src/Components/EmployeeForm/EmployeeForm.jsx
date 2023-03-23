@@ -7,11 +7,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
   const [equipments, setEquipments] = useState(null);
   const equipmentInputRef = useRef(null);
   const [currEmployeeEquipment, setCurrEmployeeEquipment] = useState([]);
-
-  //add to currEq
-  //display currEq
-
-  //fetch currEq in Update component
+  const [count, setcount] = useState(0)
 
   useEffect(() => {
 
@@ -30,7 +26,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
       }
     })()
 
-  }, [])  
+  }, [count])  
 
   console.log(currEmployeeEquipment);
 
@@ -58,11 +54,6 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
       }
     })
 
-    // console.log(selectedEquipmentId);
-
-    // setCurrEmployeeEquipment(prev => [...prev, selectedEquipmentId])
-    // console.log(currEmployeeEquipment);
-
     fetch(`/api/equip/employees/${currEmployeeId}`, {
       method: "PATCH",
       headers: {"Content-Type": "application/json"},
@@ -71,6 +62,8 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
     .then(res => res.json())
     .then(data => console.log(data))
     .catch(err => console.log(err))
+
+    setcount(count + 1);
       
   }
 

@@ -28,8 +28,6 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
 
   }, [count])  
 
-  console.log(currEmployeeEquipment);
-
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);

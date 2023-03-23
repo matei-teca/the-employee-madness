@@ -116,12 +116,10 @@ app.patch("/api/attendance/:id", async (req,res) => {
       { present: req.body.isPresent },
       { new: true }
     );
-    return res.json(employee);
+    return res.json({message: `Employees's attendance updated to "present: ${req.body.isPresent}"`});
   } catch (err) {
     return next(err);
   }
-
-  // res.json({isPresent: req.body.isPresent, id: req.params.id});
 })
 
 const main = async () => {

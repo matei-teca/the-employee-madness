@@ -20,7 +20,13 @@ const EmployeeTable = ({ employees, onDelete, handleCheckBox }) => (
             <td>{employee.name}</td>
             <td>{employee.level}</td>
             <td>{employee.position}</td>
-            <td><input type="checkbox" id="attendenceCheckbox" name="attendenceCheckbox" onChange={handleCheckBox}/></td>
+            <td>
+              <div 
+              className={employee.present ? "custom-checkbox--true" : employee.present === false ?  "custom-checkbox--false" : "custom-checkbox--default"}
+              onClick={handleCheckBox} 
+              checked={employee.present ? true : false}>
+              </div>
+            </td>
             <td>
               <Link to={`/update/${employee._id}`}>
                 <button type="button">Update</button>

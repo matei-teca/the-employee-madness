@@ -42,10 +42,11 @@ const EmployeeList = () => {
   };
 
   const handleCheckBox = (e) => {
-    if(e.target.checked === true){
-      alert("works");
-    }
+    e.target.checked = !e.target.checked;
 
+    e.target.style.backgroundColor = e.target.checked ? "green" : "red";
+    e.target.innerText = e.target.checked ? ":)" : "X";
+    
       const employeeId = e.target.parentElement.parentElement.id;
 
       fetch(`/api/attendance/${employeeId}`, {

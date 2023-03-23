@@ -49,12 +49,14 @@ const EmployeeUpdater = () => {
   }
 
   return (
-    <EmployeeForm
-      employee={employee}
-      onSave={handleUpdateEmployee}
-      disabled={updateLoading}
-      onCancel={() => navigate("/")}
-    />
+    <>
+      <EmployeeForm
+        employee={employee}
+        onSave={handleUpdateEmployee}
+        disabled={updateLoading}
+        onCancel={() => navigate("/")}
+      />
+    </>
   );
 };
 

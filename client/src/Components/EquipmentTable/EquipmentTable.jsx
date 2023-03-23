@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect} from "react";
+import { useAtom } from "jotai";
+import state from "../../AtomStates";
 
 const EquipmentTable = () => {
 
@@ -7,7 +9,7 @@ const EquipmentTable = () => {
   const [type, setType] = useState("");
   const [amount, setAmount] = useState("");
 
-  const [equipments, setEquipments] = useState(null);
+  const [equipments, setEquipments] = useAtom(state.equipment);
 
   useEffect(() => {
 

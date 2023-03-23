@@ -1,7 +1,8 @@
 import {atom} from "jotai";
 
 const state = {
-    employees: atom(null)
+    employees: atom(null),
+    equipment: atom(null)
 }
 
 export default state;

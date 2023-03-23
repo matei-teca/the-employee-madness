@@ -10,6 +10,7 @@
     justify-content:center;
     align-items:center;
     color:white;
+    cursor: pointer;
 }
 
 .custom-checkbox--true {
@@ -21,6 +22,7 @@
   justify-content:center;
   align-items:center;
   color:white;
+  cursor: pointer;
 }
 
 .custom-checkbox--false {
@@ -32,4 +34,5 @@
   justify-content:center;
   align-items:center;
   color:white;
+  cursor: pointer;
 }

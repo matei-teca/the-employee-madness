@@ -1,3 +1,7 @@
+import "./EmployeeForm.css";
+import { useAtom } from "jotai";
+import state from "../../AtomStates";
+
 const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
   const onSubmit = (e) => {
     e.preventDefault();
@@ -45,6 +49,53 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
           id="position"
         />
       </div>
+
+        {employee ? 
+         <div className="control">
+         <label htmlFor="position">Equipment:</label>
+          <ul>
+          {employee.equipment?.map(item => {
+            return(
+              <li>{item.name}</li>
+            )
+          })}
+
+          <li>ttest</li>
+          <li>ttest</li>
+          <li>ttest</li>
+         
+          </ul>
+
+          <div className="control">
+            <input
+              defaultValue={null}
+              name="equipment"
+              id="equipment"
+              list = "equipmentDataList"
+              style ={{width: "200px"}}
+            />
+            <datalist id = "equipmentDataList">
+              <option value="test"/>
+              <option value="test"/>
+              <option value="test"/>
+            </datalist>
+            {/* <div className="add-equipment--btnn">Add Equipment</div> */}
+            <button type="button" className="add-equipment--button">Add Equipment</button>
+        </div>
+
+        </div>
+        : 
+        <div className="control">
+          <label htmlFor="equipment">Equipment:</label>
+          <input
+          defaultValue={null}
+          name="equipment"
+          id="equipment"
+          />
+        </div>
+      }
+
+
 
       <div className="buttons">
         <button type="submit" disabled={disabled}>

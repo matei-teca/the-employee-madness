@@ -17,6 +17,18 @@ const deleteEmployee = (id) => {
   );
 };
 
+const addAttendance = () => {
+  fetch(`/api/attendance`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({isPresent: false}),
+  })
+  .then(res => res.json())
+  .then(data => console.log(data))
+}
+
 const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useAtom(state.employees);
@@ -29,12 +41,33 @@ const EmployeeList = () => {
     });
   };
 
+  const handleCheckBox = (e) => {
+    if(e.target.checked === true){
+      alert("works");
+    }
+
+      const employeeId = e.target.parentElement.parentElement.id;
+
+      fetch(`/api/attendance/${employeeId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({isPresent: e.target.checked ? true : false}),
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    
+  }
+
   useEffect(() => {
     fetchEmployees()
       .then((employees) => {
         setLoading(false);
         setEmployees(employees);
-      })
+      });
+
+      addAttendance();
   }, []);
 
   if (loading) {
@@ -44,7 +77,7 @@ const EmployeeList = () => {
   return <>
     <SearchBy/>
     <SortBy />
-    <EmployeeTable employees={employees} onDelete={handleDelete} />
+    <EmployeeTable employees={employees} onDelete={handleDelete} handleCheckBox={handleCheckBox}/>
   </>
 };
 

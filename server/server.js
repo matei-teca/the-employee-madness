@@ -92,6 +92,37 @@ app.get("/api/employee/:fullName", async (req, res) => {
   return res.json(employee);
 });
 
+
+// app.patch("/api/attendance", async (req,res) => {
+  // try {
+  //   const employee = await EmployeeModel.findOneAndUpdate(
+  //     { _id: req.params.id },
+  //     { present: req.body.isPresent },
+  //     { new: true }
+  //   );
+  //   return res.json(employee);
+  // } catch (err) {
+  //   return next(err);
+  // }
+
+  // res.json({message: "PATCH is prepared"});
+// })
+
+app.patch("/api/attendance/:id", async (req,res) => {
+  try {
+    const employee = await EmployeeModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { present: req.body.isPresent },
+      { new: true }
+    );
+    return res.json(employee);
+  } catch (err) {
+    return next(err);
+  }
+
+  // res.json({isPresent: req.body.isPresent, id: req.params.id});
+})
+
 const main = async () => {
   await mongoose.connect(MONGO_URL);
 

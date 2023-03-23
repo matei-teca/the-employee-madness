@@ -26,7 +26,8 @@ const EmployeeTable = ({ employees, onDelete, handleCheckBox }) => {
   // }
 
   const [page, setPage] = useState(1);
-  const [currTenEmployees, setCurrTenEmployees] = useState(employees.slice(0, 10))
+  const [currTenEmployees, setCurrTenEmployees] = useState(employees.slice(0, 10));
+  const [togglePagination, setTogglePagination] = useState(true);
 
   const handleTenEmployees = (currPage) => {
     setCurrTenEmployees(employees.slice((currPage-1)*10, (currPage-1)*10+10))
@@ -37,6 +38,9 @@ const EmployeeTable = ({ employees, onDelete, handleCheckBox }) => {
     handleTenEmployees(value);
   };
 
+  const handleTogglePagination = () => {
+    setTogglePagination(prev => !prev)
+  }
 
 
 return (
@@ -54,50 +58,74 @@ return (
       </thead>
       <tbody>
        
-        { 
-      
-          currTenEmployees.map(employee =>{
+        { togglePagination 
+        
+        ? 
+
+        (currTenEmployees.map(employee =>{
             return(
               <tr key={employee._id} id={employee._id}>
               <td>{employee.name}</td>
+              <td>{employee.level}</td>
+              <td>{employee.position}</td>
+              <td>
+                <div 
+                className={employee.present ? "custom-checkbox--true" : employee.present === false ?  "custom-checkbox--false" : "custom-checkbox--default"}
+                onClick={handleCheckBox} 
+                checked={employee.present ? true : false}>
+                </div>
+              </td>
+              <td>
+                <Link to={`/update/${employee._id}`}>
+                  <button type="button">Update</button>
+                </Link>
+                <button type="button" onClick={() => onDelete(employee._id)}>
+                  Delete
+                </button>
+              </td>
+  
             </tr>
             )
 
-          })
+          })) 
 
+          : 
+
+          employees?.map((employee) => {
+                  return(
+                  <tr key={employee._id} id={employee._id}>
+                    <td>{employee.name}</td>
+                    <td>{employee.level}</td>
+                    <td>{employee.position}</td>
+                    <td>
+                      <div 
+                      className={employee.present ? "custom-checkbox--true" : employee.present === false ?  "custom-checkbox--false" : "custom-checkbox--default"}
+                      onClick={handleCheckBox} 
+                      checked={employee.present ? true : false}>
+                      </div>
+                    </td>
+                    <td>
+                      <Link to={`/update/${employee._id}`}>
+                        <button type="button">Update</button>
+                      </Link>
+                      <button type="button" onClick={() => onDelete(employee._id)}>
+                        Delete
+                      </button>
+                    </td>
+
+                  </tr>
+                )})
         }
 
-        {/* {employees?.map((employee) => {
-          return(
-          <tr key={employee._id} id={employee._id}>
-            <td>{employee.name}</td>
-            <td>{employee.level}</td>
-            <td>{employee.position}</td>
-            <td>
-              <div 
-              className={employee.present ? "custom-checkbox--true" : employee.present === false ?  "custom-checkbox--false" : "custom-checkbox--default"}
-              onClick={handleCheckBox} 
-              checked={employee.present ? true : false}>
-              </div>
-            </td>
-            <td>
-              <Link to={`/update/${employee._id}`}>
-                <button type="button">Update</button>
-              </Link>
-              <button type="button" onClick={() => onDelete(employee._id)}>
-                Delete
-              </button>
-            </td>
-
-          </tr>
-        )})} */}
+        
       </tbody>
 
     </table>
-      <Stack spacing={2}>
-        <Typography>{page}</Typography>
+    {togglePagination &&
+      (<Stack spacing={2}>
         <Pagination count={10} page={page} onChange={handleChange} />
-      </Stack>
+      </Stack>)}
+      <button onClick={handleTogglePagination}>{togglePagination ? "Show without Pagination" : "Show with Pagination"}</button>
   </div>
 );
 }

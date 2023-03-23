@@ -20,6 +20,10 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
         const getResponse = await fetch("http://localhost:8080/api/equipments");
         const getData = await getResponse.json();
         setEquipments(await getData);
+
+        const getCurrEquipment = await fetch(`/api/employee/${currEmployeeId}/equipment`);
+        const currEquipmentData = await getCurrEquipment.json();
+        setCurrEmployeeEquipment(currEquipmentData.currEquipmentResponse);
   
       } catch (e) {
         console.log(e);
@@ -27,6 +31,8 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
     })()
 
   }, [])  
+
+  console.log(currEmployeeEquipment);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -105,15 +111,15 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
          <div className="control">
          <label htmlFor="position">Equipment:</label>
           <ul>
-          {employee.equipment?.map(item => {
+          {currEmployeeEquipment?.map((item, index) => {
             return(
-              <li>{item.name}</li>
+              <li key={index}>{item.name}</li>
             )
           })}
-
+{/* 
           <li>ttest</li>
           <li>ttest</li>
-          <li>ttest</li>
+          <li>ttest</li> */}
          
           </ul>
 

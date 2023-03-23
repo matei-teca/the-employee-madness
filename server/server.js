@@ -141,6 +141,31 @@ app.patch("/api/attendance/:id", async (req,res) => {
   }
 })
 
+app.get("/api/employee/:id/equipment", async (req, res, next) => {
+  try {
+    const employee = await EmployeeModel.findOne({_id: req.params.id});
+
+    let convertedEquipmentArray = [];
+    let allEquipment = await EquipmentModel.find();
+
+    allEquipment.forEach(async (item) => {
+
+      employee.equipment.forEach(currId => {
+        if(item.id === currId){
+          convertedEquipmentArray.push(item)
+        }
+      })
+      
+    });
+
+
+
+    return res.json({currEquipmentResponse: convertedEquipmentArray})
+  } catch (err) {
+    return next(err); 
+  }
+})
+
 const main = async () => {
   await mongoose.connect(MONGO_URL);
 

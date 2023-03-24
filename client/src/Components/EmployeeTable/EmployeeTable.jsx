@@ -26,7 +26,7 @@ const EmployeeTable = ({ employees, onDelete, handleCheckBox }) => {
   // }`
 
   const [page, setPage] = useState(1);
-  const [currTenEmployees, setCurrTenEmployees] = useState(employees.length > 9 ? employees.slice(0, 10) : employees);
+  const [currTenEmployees, setCurrTenEmployees] = useState(employees.slice(0, 10));
   const [togglePagination, setTogglePagination] = useState(true);
 
   const handleTenEmployees = (currPage) => {

@@ -36,14 +36,26 @@ const EmployeeTable = ({onDelete, handleCheckBox, handleTenEmployees}) => {
   // const [rerender, setRerender] = useState(currTenEmployees);
 
   const [equipment, setEquipment] = useState(null);
+  const [brands, setBrands] = useState(null);
+
+  const fetchEquipment = async () => {
+    const getResponse = await fetch("http://localhost:8080/api/equipments");
+    const getData = await getResponse.json();
+    setEquipment(await getData);
+  }
+
+  const fetchBrands = async () => {
+    const getResponse = await fetch("http://localhost:8080/api/brands");
+    const getData = await getResponse.json();
+    setBrands(await getData);
+  }
 
   useEffect(() => {
 
     (async () => {
       try {
-        const getResponse = await fetch("http://localhost:8080/api/equipments");
-        const getData = await getResponse.json();
-        setEquipment(await getData);
+        fetchEquipment();
+        fetchBrands();
   
       } catch (e) {
         console.log(e);
@@ -93,7 +105,7 @@ return (
           <th>Position</th>
           <th>Present</th>
           <th onClick={() => setShowEquipment(prev => !prev)}>{showEquipment ? "Equipment": "Show"}</th>
-          <th />
+          <th>Fav Brand</th>
         </tr>
       </thead>
       <tbody>
@@ -167,6 +179,13 @@ return (
                     </td>
                     :
                     <td></td>}
+                    <td>
+                    {brands?.map(item => {
+                          if(item._id === employee.favBrand){
+                            return <div key={employee._id} >{item.name}</div>
+                          }
+                    })} 
+                    </td>
                     <td>
                       <Link to={`/update/${employee._id}`}>
                         <button type="button">Update</button>

@@ -94,6 +94,7 @@ const EmployeeList = () => {
       });
 
       // addAttendance();
+      // assignBrands();
 
   }, []);
 

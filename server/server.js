@@ -130,6 +130,13 @@ app.get("/api/equipments", async (req, res) => {
   res.json(equipments)
 })
 
+app.get("/api/brands", async (req, res) => {
+  const brands = await BrandModel.find().sort({ created: "desc" });
+  res.json(brands)
+})
+
+
+
 app.get("/api/employee/:fullName", async (req, res) => {
   const employee = await EmployeeModel.find({name: req.params.fullName});
   return res.json(employee);

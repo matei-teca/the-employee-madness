@@ -33,6 +33,13 @@ const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useAtom(state.employees);
   const [currEmployeeEquipment, setCurrEmployeeEquipment] = useState([]);
+  const [currTenEmployees, setCurrTenEmployees] = useAtom(state.currTenEmployees); 
+
+  const handleTenEmployees = (currPage) => {
+    if(employees.length > 9){
+      setCurrTenEmployees(employees.slice((currPage-1)*10, (currPage-1)*10+10))
+    }
+  }
 
   const handleDelete = (id) => {
     deleteEmployee(id);
@@ -67,6 +74,7 @@ const EmployeeList = () => {
       .then((employees) => {
         setLoading(false);
         setEmployees(employees);
+        setCurrTenEmployees(employees.slice(0, 10));
       });
 
       // addAttendance();
@@ -78,8 +86,8 @@ const EmployeeList = () => {
 
   return <>
     <SearchBy/>
-    <SortBy />
-    <EmployeeTable employees={employees} onDelete={handleDelete} handleCheckBox={handleCheckBox}/>
+    <SortBy handleTenEmployees={handleTenEmployees}/>
+    <EmployeeTable employees={employees} onDelete={handleDelete} handleCheckBox={handleCheckBox} handleTenEmployees={handleTenEmployees} currTenEmployees={currTenEmployees}/>
   </>
 };
 

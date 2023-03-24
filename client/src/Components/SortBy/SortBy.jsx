@@ -2,9 +2,11 @@ import React from 'react';
 import { useAtom } from "jotai";
 import state from '../../AtomStates';
 
-export default function SortBy() {
+export default function SortBy({handleTenEmployees}) {
 
     const [employees, setEmployees] = useAtom(state.employees);
+    const [currTenEmployees, setCurrTenEmployees] = useAtom(state.currTenEmployees); 
+    const [page, setPage] = useAtom(state.pagination); 
 
     const handleSortByName = (criteria) => {
 
@@ -46,8 +48,10 @@ export default function SortBy() {
                     })
                     
                     return newArr
+                    
                 })
         })
+        handleTenEmployees(page)
     }
 
     const handleSortByStatus = (criteria) => {
@@ -74,6 +78,7 @@ export default function SortBy() {
                     return newArr
                 })
         })
+        handleTenEmployees(page);
     }
 
   return (

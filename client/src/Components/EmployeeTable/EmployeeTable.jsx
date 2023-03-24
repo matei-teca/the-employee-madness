@@ -6,10 +6,11 @@ import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import {useState, useEffect, useRef} from "react";
+import { useAtom } from "jotai";
+import state from "../../AtomStates";
 
 
-
-const EmployeeTable = ({ employees, onDelete, handleCheckBox }) => {
+const EmployeeTable = ({ employees, onDelete, handleCheckBox, handleTenEmployees, currTenEmployees}) => {
 
   // const getEachEquipment = async (employee) => {
 
@@ -25,15 +26,11 @@ const EmployeeTable = ({ employees, onDelete, handleCheckBox }) => {
   //     )
   // }`
 
-  const [page, setPage] = useState(1);
-  const [currTenEmployees, setCurrTenEmployees] = useState(employees.slice(0, 10));
+  const [page, setPage] = useAtom(state.pagination); 
   const [togglePagination, setTogglePagination] = useState(true);
+  // const [currTenEmployees, setCurrTenEmployees] = useAtom(state.currTenEmployees); 
 
-  const handleTenEmployees = (currPage) => {
-    if(employees.length > 9){
-      setCurrTenEmployees(employees.slice((currPage-1)*10, (currPage-1)*10+10))
-    }
-  }
+  // const [rerender, setRerender] = useState(currTenEmployees);
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -44,13 +41,12 @@ const EmployeeTable = ({ employees, onDelete, handleCheckBox }) => {
     setTogglePagination(prev => !prev)
   }
 
-
 return (
   <div className="EmployeeTable">
     <table>
       <thead>
         <tr>
-          <th>Name</th>
+          <th onClick={()=> {alert("clicked!")}}>Name</th>
           <th>Level</th>
           <th>Position</th>
           <th>Present</th>

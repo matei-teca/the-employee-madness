@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const names = require("./names.json");
 const levels = require("./levels.json");
 const positions = require("./positions.json");
-const brands = require("./brands.json");
+const brandNames = require("./brands.json");
 const EmployeeModel = require("../db/employee.model");
 const BrandModel = require("../db/brand.model")
 
@@ -33,7 +33,7 @@ const populateEmployees = async () => {
 };
 
 const populateBrands = async () => {
-  const brands = brands.map((name) => ({
+  const brands = brandNames.map((name) => ({
     name
   }))
 

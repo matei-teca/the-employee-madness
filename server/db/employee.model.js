@@ -12,7 +12,8 @@ const EmployeeSchema = new Schema({
     default: Date.now,
   },
   present: Boolean,
-  equipment: Array
+  equipment: Array,
+  favBrand: Schema.Types.ObjectId,
 });
 
 module.exports = mongoose.model("Employee", EmployeeSchema);

@@ -69,6 +69,22 @@ const EmployeeList = () => {
     
   }
 
+  const assignBrands = () => {
+    fetchEmployees()
+      .then((employees) => {
+        setEmployees(employees);
+
+        // if(employees[0].favBrand === )
+        fetch("/api/assign/brand", {
+          method: "PATCH",
+          headers: {"Content-Type":"application/json"}
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+  })
+  
+}
+
   useEffect(() => {
     fetchEmployees()
       .then((employees) => {
@@ -78,6 +94,7 @@ const EmployeeList = () => {
       });
 
       // addAttendance();
+
   }, []);
 
   if (loading) {

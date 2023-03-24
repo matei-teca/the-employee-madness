@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const EmployeeModel = require("./db/employee.model");
 const EquipmentModel = require("./db/equipment.model");
+const BrandModel = require("./db/brand.model")
 
 const { MONGO_URL, PORT = 8080 } = process.env;
 
@@ -64,6 +65,28 @@ app.patch("/api/equip/employees/:id", async (req, res, next) => {
       { new: true }
     );
     return res.json(employee);
+  } catch (err) {
+    return next(err);
+  }
+
+})
+
+app.patch("/api/assign/brand", async (req, res, next) => {
+
+  try {
+    const brands = await BrandModel.find();
+    const brandsIds = brands.map(brand => brand._id);
+    const pick = (from) => from[Math.floor(Math.random() * (from.length - 0))];
+    
+    const employees = await EmployeeModel.find();
+
+    employees.map(async (employee) => {
+      const updatedEmployees = await EmployeeModel.findOneAndUpdate({_id: employee._id},{ 
+        favBrand: pick(brandsIds)
+      })
+    })
+
+    return res.json({message: `A randomly chosen brand was assigned to each employee's field favBrand`});
   } catch (err) {
     return next(err);
   }

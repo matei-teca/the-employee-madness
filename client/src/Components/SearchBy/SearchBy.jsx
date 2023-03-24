@@ -15,7 +15,7 @@ export default function SearchBy({handleTenEmployees}) {
                 setEmployees(employees);
                 
                 setEmployees((employees) => {
-                    return employees.filter((employee) => employee.position.toUpperCase() === inputRef.current.value.toUpperCase());
+                    return employees.filter((employee) => employee.position.toUpperCase().includes(inputRef.current.value.toUpperCase()));
                 })
                 handleTenEmployees(page)
         })
@@ -27,7 +27,7 @@ export default function SearchBy({handleTenEmployees}) {
             .then((employees) => {
                 setEmployees(employees);
                 setEmployees((employees) => {
-                    return employees.filter((employee) => employee.level.toUpperCase() === inputRef.current.value.toUpperCase());
+                    return employees.filter((employee) => employee.level.toUpperCase().includes(inputRef.current.value.toUpperCase()));
                 })
                 handleTenEmployees(page)
 

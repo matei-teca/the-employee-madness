@@ -10,7 +10,7 @@ import { useAtom } from "jotai";
 import state from "../../AtomStates";
 
 
-const EmployeeTable = ({ employees, onDelete, handleCheckBox, handleTenEmployees, currTenEmployees}) => {
+const EmployeeTable = ({onDelete, handleCheckBox, handleTenEmployees}) => {
 
   // const getEachEquipment = async (employee) => {
 
@@ -25,10 +25,12 @@ const EmployeeTable = ({ employees, onDelete, handleCheckBox, handleTenEmployees
   //       </div>
   //     )
   // }`
-
+  
+  const [employees, setEmployees] = useAtom(state.employees);
   const [page, setPage] = useAtom(state.pagination); 
   const [togglePagination, setTogglePagination] = useState(true);
-  // const [currTenEmployees, setCurrTenEmployees] = useAtom(state.currTenEmployees); 
+  const [currTenEmployees, setCurrTenEmployees] = useAtom(state.currTenEmployees); 
+  const [nameSortDirection, setNameSortDirection] = useState(false);
 
   // const [rerender, setRerender] = useState(currTenEmployees);
 
@@ -41,12 +43,34 @@ const EmployeeTable = ({ employees, onDelete, handleCheckBox, handleTenEmployees
     setTogglePagination(prev => !prev)
   }
 
+  const handleNameSort = () => {
+    setNameSortDirection(prev => !prev)
+
+    setEmployees(employees => {const newArr = [...employees].sort((a,b) => {
+      if (a.name < b.name) {
+          return nameSortDirection ? -1 : 1;
+      }
+      if (a.name > b.name) {
+        return nameSortDirection ? 1 : -1;
+      }
+
+      // names must be equal
+      return 0; 
+    }); 
+    return newArr
+    });
+
+    handleTenEmployees(page);
+
+    console.log(employees);
+  }
+
 return (
   <div className="EmployeeTable">
     <table>
       <thead>
         <tr>
-          <th onClick={()=> {alert("clicked!")}}>Name</th>
+          <th onClick={()=> handleNameSort()}>Name</th>
           <th>Level</th>
           <th>Position</th>
           <th>Present</th>

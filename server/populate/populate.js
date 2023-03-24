@@ -7,6 +7,8 @@ const names = require("./names.json");
 const levels = require("./levels.json");
 const positions = require("./positions.json");
 const brandNames = require("./brands.json");
+const colors = require("./colors.json");
+const ColorModel = require("../db/color.model")
 const EmployeeModel = require("../db/employee.model");
 const BrandModel = require("../db/brand.model")
 
@@ -22,10 +24,13 @@ const pick = (from) => from[Math.floor(Math.random() * (from.length - 0))];
 const populateEmployees = async () => {
   await EmployeeModel.deleteMany({});
 
+  const colorsList = await ColorModel.find();
+
   const employees = names.map((name) => ({
     name,
     level: pick(levels),
     position: pick(positions),
+    color: pick(colorsList)
   }));
 
   await EmployeeModel.create(...employees);
@@ -41,10 +46,23 @@ const populateBrands = async () => {
   console.log("Brands Created");
 }
 
+const populateColors = async () => {
+  await ColorModel.deleteMany();
+
+  const colorsList = colors.map((color) => ({
+    name: color
+  }));
+
+  await ColorModel.create(...colorsList);
+  console.log("Colors created");
+};
+
 const main = async () => {
   await mongoose.connect(mongoUrl);
 
-  await populateBrands();
+  // await populateBrands();
+
+  await populateColors();
   await populateEmployees();
 
   await mongoose.disconnect();

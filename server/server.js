@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const EmployeeModel = require("./db/employee.model");
 const EquipmentModel = require("./db/equipment.model");
 const BrandModel = require("./db/brand.model")
+const ColorModel = require("./db/color.model")
 
 const { MONGO_URL, PORT = 8080 } = process.env;
 
@@ -19,7 +20,7 @@ const cors = require("cors");
 app.use(cors());
 
 app.get("/api/employees/", async (req, res) => {
-  const employees = await EmployeeModel.find().sort({ created: "desc" });
+  const employees = await EmployeeModel.find().populate("color").sort({ created: "desc" });
   return res.json(employees);
 });
 

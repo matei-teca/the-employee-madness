@@ -14,6 +14,11 @@ const EmployeeSchema = new Schema({
   present: Boolean,
   equipment: Array,
   favBrand: Schema.Types.ObjectId,
+  color: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Color",
+    
+  },
 });
 
 module.exports = mongoose.model("Employee", EmployeeSchema);

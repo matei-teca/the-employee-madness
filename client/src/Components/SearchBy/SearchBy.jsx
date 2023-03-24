@@ -2,10 +2,11 @@ import React, {useRef, useEffect} from 'react';
 import { useAtom } from "jotai";
 import state from "../../AtomStates";
 
-export default function SearchBy() {
+export default function SearchBy({handleTenEmployees}) {
 
     const [employees, setEmployees] = useAtom(state.employees);
     const inputRef = useRef(null);
+    const [page, setPage] = useAtom(state.pagination); 
 
     const handleByPosition = () => {
 
@@ -16,6 +17,7 @@ export default function SearchBy() {
                 setEmployees((employees) => {
                     return employees.filter((employee) => employee.position.toUpperCase() === inputRef.current.value.toUpperCase());
                 })
+                handleTenEmployees(page)
         })
     }
 
@@ -27,6 +29,8 @@ export default function SearchBy() {
                 setEmployees((employees) => {
                     return employees.filter((employee) => employee.level.toUpperCase() === inputRef.current.value.toUpperCase());
                 })
+                handleTenEmployees(page)
+
         })
     }
 

@@ -52,6 +52,7 @@ export default function SortBy({handleTenEmployees}) {
                 })
         })
         handleTenEmployees(page)
+        // handleTenEmployees(page)
     }
 
     const handleSortByStatus = (criteria) => {

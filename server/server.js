@@ -173,6 +173,10 @@ const main = async () => {
   });
 };
 
+
+// populate 3 documente intr-o colectie noua
+// populate fiecare employee cu cate un id din cele 3
+
 main().catch((err) => {
   console.error(err);
   process.exit(1);

@@ -1,14 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import EmployeeTable from "../Components/EmployeeTable";
-
-
-// import { useAtom } from "jotai";
-// import state from '../AtomStates';
-// const [employees, setEmployees] = useAtom(state.employees);
-
-// I thnik useAtom doesn't work the same way with react router
+import SmallEmployeeTable from '../Components/SmallEmployeeTable/SmallEmployeeTable';
 
 const fetchEmployees = () => {
     return fetch("/api/employees").then((res) => res.json());
@@ -21,7 +14,6 @@ const deleteEmployee = (id) => {
   };
 
 export default function MissingEmployees() {
-    const { search } = useParams();
     const [employees, setEmployees] = useState(null);
 
     const handleDelete = (id) => {
@@ -49,7 +41,7 @@ export default function MissingEmployees() {
       return (
       <>
         <div style={{fontWeight: "bold", marginLeft:"10px"}}>Missing employees:</div>
-         {employees && <EmployeeTable employees={employees} onDelete={handleDelete}/>}
+         {employees && <SmallEmployeeTable employees={employees} onDelete={handleDelete}/>}
         </>
       );
 }

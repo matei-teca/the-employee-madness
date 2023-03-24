@@ -1,0 +1,38 @@
+.EmployeeTable {
+    padding: 0.5rem;
+  }
+  
+  .custom-checkbox--default {
+      width:20px;
+      height:20px;
+      border:1px solid black;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:white;
+      cursor: pointer;
+  }
+  
+  .custom-checkbox--true {
+    background-color: green;
+    width:20px;
+    height:20px;
+    border:1px solid black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    cursor: pointer;
+  }
+  
+  .custom-checkbox--false {
+    background-color: red;
+    width:20px;
+    height:20px;
+    border:1px solid black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    cursor: pointer;
+  }

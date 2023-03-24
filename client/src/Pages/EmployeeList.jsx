@@ -87,7 +87,7 @@ const EmployeeList = () => {
   return <>
     <SearchBy handleTenEmployees={handleTenEmployees}/>
     <SortBy handleTenEmployees={handleTenEmployees}/>
-    <EmployeeTable employees={employees} onDelete={handleDelete} handleCheckBox={handleCheckBox} handleTenEmployees={handleTenEmployees} currTenEmployees={currTenEmployees}/>
+    <EmployeeTable onDelete={handleDelete} handleCheckBox={handleCheckBox} handleTenEmployees={handleTenEmployees}/>
   </>
 };
 

@@ -31,8 +31,26 @@ const EmployeeTable = ({onDelete, handleCheckBox, handleTenEmployees}) => {
   const [togglePagination, setTogglePagination] = useState(true);
   const [currTenEmployees, setCurrTenEmployees] = useAtom(state.currTenEmployees); 
   const [nameSortDirection, setNameSortDirection] = useState(false);
+  const [showEquipment, setShowEquipment] = useState(true);
 
   // const [rerender, setRerender] = useState(currTenEmployees);
+
+  const [equipment, setEquipment] = useState(null);
+
+  useEffect(() => {
+
+    (async () => {
+      try {
+        const getResponse = await fetch("http://localhost:8080/api/equipments");
+        const getData = await getResponse.json();
+        setEquipment(await getData);
+  
+      } catch (e) {
+        console.log(e);
+      }
+    })()
+
+  }, [])
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -62,7 +80,7 @@ const EmployeeTable = ({onDelete, handleCheckBox, handleTenEmployees}) => {
 
     handleTenEmployees(page);
 
-    console.log(employees);
+    console.log(equipment);
   }
 
 return (
@@ -74,7 +92,7 @@ return (
           <th>Level</th>
           <th>Position</th>
           <th>Present</th>
-          <th onClick={() => console.log("nthing")}>Equipment</th>
+          <th onClick={() => setShowEquipment(prev => !prev)}>{showEquipment ? "Equipment": "Show"}</th>
           <th />
         </tr>
       </thead>
@@ -97,6 +115,17 @@ return (
                 checked={employee.present ? true : false}>
                 </div>
               </td>
+              {showEquipment ? <td>
+              {equipment?.map(item => {
+                  return employee.equipment?.map(id => {
+                    if(item._id === id){
+                      return <div key={employee._id}>{item.name}</div>
+                    }
+                  })
+              })} 
+              </td>
+              :
+              <td></td>}
               <td>
                 <Link to={`/update/${employee._id}`}>
                   <button type="button">Update</button>
@@ -126,6 +155,18 @@ return (
                       checked={employee.present ? true : false}>
                       </div>
                     </td>
+                    {showEquipment ? 
+                    <td>
+                    {equipment?.map(item => {
+                        return employee.equipment?.map(id => {
+                          if(item._id === id){
+                            return <div key={employee._id} >{item.name}</div>
+                          }
+                        })
+                    })} 
+                    </td>
+                    :
+                    <td></td>}
                     <td>
                       <Link to={`/update/${employee._id}`}>
                         <button type="button">Update</button>

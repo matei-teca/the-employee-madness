@@ -1,0 +1,64 @@
+.Layout nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: rgb(76, 117, 219);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .Layout nav button {
+    padding: 0.7rem 1.7rem;
+    font-weight: bold;
+  }
+  
+  .Layout nav button:hover {
+    box-shadow: 0px 0px 5px rgb(255, 255, 255);
+  }
+  
+  .searchBy {
+    position: absolute;
+    left: 30%
+  }
+  
+  .input {
+    height: 50px;
+  }
+
+  .search-bar--container {
+    /* background-color: red; */
+    margin-right: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .list-container {
+    background-color: rgba(248, 244, 244, 0.7);
+    /* background-color: transparent; */
+    border-radius: 10px;
+    margin-left: 34%;
+    font-size: 20px;
+    max-height: 50vh;
+    max-width: 33%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  .product-names {
+    cursor: pointer;
+    display: flex;
+    margin-block: 5px;
+    border-bottom: 2px solid black;
+  }
+  .navbar,
+  .product-chart,
+  .my-profile {
+    background-color: rgba(248, 244, 244, 0.7);
+    border-radius: 0 0 14px 14px;
+    display: flex;
+  }
+  

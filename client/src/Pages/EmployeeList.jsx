@@ -6,7 +6,8 @@ import state from "../AtomStates";
 import SearchBy from "../Components/SearchBy";
 import SortBy from "../Components/SortBy";
 import Layout from "./Layout";
-import EmployeesNavBar from "../Components/EmployeesNavBar";
+import EmployeesListNavBar from "../Components/EmployeesListNavBar";
+import "bootstrap/dist/css/bootstrap.css";
 
 const fetchEmployees = () => {
   return fetch("/api/employees").then((res) => res.json());
@@ -105,7 +106,7 @@ const EmployeeList = () => {
   }
 
   return <>
-    <EmployeesNavBar headerName={"Employees List"}/>
+    <EmployeesListNavBar headerName={"Employees List"}/>
     <SearchBy handleTenEmployees={handleTenEmployees}/>
     <SortBy handleTenEmployees={handleTenEmployees}/>
     <EmployeeTable onDelete={handleDelete} handleCheckBox={handleCheckBox} handleTenEmployees={handleTenEmployees}/>

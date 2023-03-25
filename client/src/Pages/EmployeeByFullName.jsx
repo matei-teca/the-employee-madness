@@ -7,7 +7,7 @@ import EmployeesNavBar from "../Components/EmployeesNavBar";
 
 
 const fetchEmployee = (fullName) => {
-    return fetch(`http://localhost:8080/api/employee/${fullName}`)
+    return fetch(`/api/employee/${fullName}`)
     .then((res) => res.json())
   };
 

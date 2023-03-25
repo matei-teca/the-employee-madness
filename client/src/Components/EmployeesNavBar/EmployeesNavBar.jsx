@@ -6,7 +6,7 @@ const EmployeesNavBar = ({headerName}) => (
     <nav>
       <ul>
         <li className="grow">
-          <Link to="/">{headerName}</Link>
+          <div style={{}}>{headerName}</div>
         </li>
         <li>
           <Link to="/create">

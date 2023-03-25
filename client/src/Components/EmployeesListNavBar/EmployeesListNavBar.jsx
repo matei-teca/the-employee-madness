@@ -11,7 +11,7 @@ import Button from "react-bootstrap/Button";
 const EmployeesListNavBar = ({ headerName }) => (
   <div className="Layout">
     <nav>
-      <ul>
+      <ul className="employees-list--nav">
         <Navbar
           variant="dark"
           expand="lg"
@@ -24,7 +24,7 @@ const EmployeesListNavBar = ({ headerName }) => (
               navbarScroll
             >
               <li className="grow">
-                <Link to="/">{headerName}</Link>
+                <div>{headerName}</div>
               </li>
             </Nav>
             <Form className="d-flex">
@@ -104,7 +104,7 @@ const EmployeesListNavBar = ({ headerName }) => (
             >
               <li>
                 <Link to="/create">
-                  <button type="button">Create Employee</button>
+                  <button type="button" className="create--button">Create Employee</button>
                 </Link>
               </li>
             </Nav>

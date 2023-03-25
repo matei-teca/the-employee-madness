@@ -34,10 +34,11 @@ const EmployeeList = () => {
   const [employees, setEmployees] = useAtom(state.employees);
   const [currEmployeeEquipment, setCurrEmployeeEquipment] = useState([]);
   const [currTenEmployees, setCurrTenEmployees] = useAtom(state.currTenEmployees); 
+  const [rowsPerPage, setRowsPerPage] = useAtom(state.paginationRows);
 
   const handleTenEmployees = (currPage) => {
     if(employees.length > 9){
-      setCurrTenEmployees(employees.slice((currPage-1)*10, (currPage-1)*10+10))
+      setCurrTenEmployees(employees.slice(currPage * rowsPerPage, currPage * rowsPerPage+10))
     }
   }
 

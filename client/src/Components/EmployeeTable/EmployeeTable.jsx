@@ -9,6 +9,8 @@ import {useState, useEffect, useRef} from "react";
 import { useAtom } from "jotai";
 import state from "../../AtomStates";
 
+import TablePagination from '@mui/material/TablePagination';
+
 
 const EmployeeTable = ({onDelete, handleCheckBox, handleTenEmployees}) => {
 
@@ -28,6 +30,8 @@ const EmployeeTable = ({onDelete, handleCheckBox, handleTenEmployees}) => {
   
   const [employees, setEmployees] = useAtom(state.employees);
   const [page, setPage] = useAtom(state.pagination); 
+  const [rowsPerPage, setRowsPerPage] = useAtom(state.paginationRows);
+
   const [togglePagination, setTogglePagination] = useState(true);
   const [currTenEmployees, setCurrTenEmployees] = useAtom(state.currTenEmployees); 
   const [nameSortDirection, setNameSortDirection] = useState(false);
@@ -64,9 +68,15 @@ const EmployeeTable = ({onDelete, handleCheckBox, handleTenEmployees}) => {
 
   }, [])
 
-  const handleChange = (event, value) => {
-    setPage(value);
-    handleTenEmployees(value);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+    handleTenEmployees(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    handleTenEmployees(page);
+    setPage(0);
   };
 
   const handleTogglePagination = () => {
@@ -205,7 +215,14 @@ return (
     </table>
     {togglePagination &&
       (<Stack spacing={2}>
-        <Pagination count={10} page={page} onChange={handleChange} />
+        <TablePagination
+          component="div"
+          count={100}
+          page={page}
+          onPageChange={handleChangePage}
+          rowsPerPage={rowsPerPage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />      
       </Stack>)}
       <button onClick={handleTogglePagination}>{togglePagination ? "Show without Pagination" : "Show with Pagination"}</button>
   </div>

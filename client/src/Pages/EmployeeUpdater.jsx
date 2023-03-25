@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import EmployeeForm from "../Components/EmployeeForm";
 import Loading from "../Components/Loading";
+import EmployeesNavBar from "../Components/EmployeesNavBar";
+
 
 const updateEmployee = (employee) => {
   return fetch(`/api/employees/${employee._id}`, {
@@ -50,6 +52,7 @@ const EmployeeUpdater = () => {
 
   return (
     <>
+      <EmployeesNavBar headerName={`Update the employee ${employee.name}`}/>
       <EmployeeForm
         employee={employee}
         onSave={handleUpdateEmployee}

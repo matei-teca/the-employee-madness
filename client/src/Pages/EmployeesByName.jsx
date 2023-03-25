@@ -2,6 +2,8 @@ import React from 'react'
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SmallEmployeeTable from "../Components/SmallEmployeeTable/SmallEmployeeTable.jsx";
+import EmployeesNavBar from "../Components/EmployeesNavBar";
+
 
 
 // import { useAtom } from "jotai";
@@ -48,7 +50,7 @@ export default function EmployeeByName() {
     
       return (
       <>
-        <div style={{fontWeight: "bold", marginLeft:"10px"}}>Employees with the name "{search}":</div>
+        <EmployeesNavBar headerName={`Employees with the name ${search}:`}/>
         {employees && <SmallEmployeeTable employees={employees} onDelete={handleDelete}/>}
         </>
       );

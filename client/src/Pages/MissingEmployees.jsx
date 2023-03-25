@@ -2,6 +2,8 @@ import React from 'react'
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SmallEmployeeTable from '../Components/SmallEmployeeTable/SmallEmployeeTable';
+import EmployeesNavBar from "../Components/EmployeesNavBar";
+
 
 const fetchEmployees = () => {
     return fetch("/api/employees").then((res) => res.json());
@@ -40,7 +42,7 @@ export default function MissingEmployees() {
     
       return (
       <>
-        <div style={{fontWeight: "bold", marginLeft:"10px"}}>Missing employees:</div>
+        <EmployeesNavBar headerName={"Missing Employees"}/>
          {employees && <SmallEmployeeTable employees={employees} onDelete={handleDelete}/>}
         </>
       );

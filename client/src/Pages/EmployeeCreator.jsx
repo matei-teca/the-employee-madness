@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EmployeeForm from "../Components/EmployeeForm";
+import EmployeesNavBar from "../Components/EmployeesNavBar";
 
 const createEmployee = (employee) => {
   return fetch("/api/employees", {
@@ -27,11 +28,14 @@ const EmployeeCreator = () => {
   };
 
   return (
+    <>
+    <EmployeesNavBar headerName={"Create a new employee"}/>
     <EmployeeForm
       onCancel={() => navigate("/")}
       disabled={loading}
       onSave={handleCreateEmployee}
     />
+    </>
   );
 };
 

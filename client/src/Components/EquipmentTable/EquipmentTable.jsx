@@ -9,15 +9,15 @@ const EquipmentTable = () => {
   const [type, setType] = useState("");
   const [amount, setAmount] = useState("");
 
-  const [equipments, setEquipments] = useAtom(state.equipment);
+  const [equipment, setEquipment] = useAtom(state.equipment);
 
   useEffect(() => {
 
     (async () => {
       try {
-        const getResponse = await fetch("http://localhost:8080/api/equipments");
+        const getResponse = await fetch("http://localhost:8080/api/equipment");
         const getData = await getResponse.json();
-        setEquipments(await getData);
+        setEquipment(await getData);
   
       } catch (e) {
         console.log(e);
@@ -42,7 +42,7 @@ const EquipmentTable = () => {
     const data = {name, type, amount};
 
       try {
-        const postResponse = await fetch("http://localhost:8080/api/equipments", {
+        const postResponse = await fetch("http://localhost:8080/api/equipment", {
           method: "POST",
           headers: {"Content-Type":"application/json"},
           body: JSON.stringify(data)
@@ -51,11 +51,11 @@ const EquipmentTable = () => {
         const postData = await postResponse.json();
         console.log(postData);
 
-        const getResponse = await fetch("http://localhost:8080/api/equipments");
+        const getResponse = await fetch("http://localhost:8080/api/equipment");
         const getData = await getResponse.json();
-        setEquipments(await getData);
+        setEquipment(await getData);
 
-        console.log(equipments);
+        console.log(equipment);
 
       } catch (e) {
         console.log(e);
@@ -95,7 +95,7 @@ const EquipmentTable = () => {
             </td>
           </tr>
 
-          {equipments?.map(equipment => {
+          {equipment?.map(equipment => {
             return(
             <tr key = {equipment._id}>
               <td>{equipment.name}</td>

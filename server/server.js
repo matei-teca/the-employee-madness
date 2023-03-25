@@ -104,7 +104,7 @@ app.delete("/api/employees/:id", async (req, res, next) => {
   }
 });
 
-app.post("/api/equipments",(req, res) => {
+app.post("/api/equipment",(req, res) => {
 
   let name = req.body.name;
   let type = req.body.type;
@@ -125,9 +125,9 @@ app.post("/api/equipments",(req, res) => {
 
 })
 
-app.get("/api/equipments", async (req, res) => {
-  const equipments = await EquipmentModel.find().sort({ created: "desc" });
-  res.json(equipments)
+app.get("/api/equipment", async (req, res) => {
+  const equipment = await EquipmentModel.find().sort({ created: "desc" });
+  res.json(equipment)
 })
 
 app.get("/api/brands", async (req, res) => {

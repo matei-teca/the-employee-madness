@@ -29,8 +29,10 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees }) => {
   const [equipment, setEquipment] = useState(null);
   const [brands, setBrands] = useState(null);
 
+  const equipmentColRef = useRef(null);
+
   const fetchEquipment = async () => {
-    const getResponse = await fetch("http://localhost:8080/api/equipments");
+    const getResponse = await fetch("http://localhost:8080/api/equipment");
     const getData = await getResponse.json();
     setEquipment(await getData);
   };
@@ -180,9 +182,10 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees }) => {
                       ></div>
                     </td>
                     {showEquipment ? (
-                      <td>
+                      <td ref={equipmentColRef}>
                         {equipment?.map((item) => {
                           return employee.equipment?.map((id) => {
+                            // equipmentColRef.current.value = "";
                             if (item._id === id) {
                               return <div key={employee._id}>{item.name}</div>;
                             }

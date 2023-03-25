@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         element: <FormTest />,
       },
       {
-        path: "/equipments",
+        path: "/equipment",
         element: <EquipmentList />,
       },
       {

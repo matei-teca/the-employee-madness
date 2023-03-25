@@ -142,23 +142,6 @@ app.get("/api/employee/:fullName", async (req, res) => {
   return res.json(employee);
 });
 
-
-// app.patch("/api/attendance", async (req,res) => {
-
-  // try {
-  //   db.employees.update(
-  //     {                     
-  //       present: false,
-  //     }
-  //  )
-  // return res.json({message: "Collection updated"});
- 
-  // } catch (err) {
-  //   return next(err);
-  // }
-
-// })
-
 app.patch("/api/attendance/:id", async (req,res) => {
   try {
     const employee = await EmployeeModel.findOneAndUpdate(
@@ -204,11 +187,8 @@ const main = async () => {
   });
 };
 
-
-// populate 3 documente intr-o colectie noua
-// populate fiecare employee cu cate un id din cele 3
-
 main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
+

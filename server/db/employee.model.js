@@ -19,6 +19,7 @@ const EmployeeSchema = new Schema({
     ref: "Color",
     
   },
+  salary: Number
 });
 
 module.exports = mongoose.model("Employee", EmployeeSchema);

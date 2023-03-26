@@ -6,7 +6,8 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
   const [equipment, setEquipment] = useState(null);
   const equipmentInputRef = useRef(null);
   const [currEmployeeEquipment, setCurrEmployeeEquipment] = useState([]);
-  const [count, setcount] = useState(0)
+  const [count, setcount] = useState(0);
+  const levelInputRef = useRef(null)
 
   useEffect(() => {
 
@@ -51,9 +52,6 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
       }
     })
 
-    // console.log(currEmployeeEquipment);
-    // console.log(selectedEquipmentId);
-
     let currEmployeeEquipmentIds =[];
     currEmployeeEquipment.map(equipmentItem => {
       currEmployeeEquipmentIds.push(equipmentItem._id);
@@ -76,6 +74,20 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
     }
   }
 
+  const handleSalaryToLevel = (e) => {
+    if(e.target.value <= 100){
+      levelInputRef.current.value = "Junior";
+    } else if (e.target.value > 100 && e.target.value <= 300){
+      levelInputRef.current.value = "Medior"
+    } else if (e.target.value > 300 && e.target.value <= 400){
+      levelInputRef.current.value = "Senior"
+    } else if (e.target.value > 400 && e.target.value <= 800){
+      levelInputRef.current.value = "Expert"
+    } else if (e.target.value > 800){
+      levelInputRef.current.value = "Godlike"
+    }
+  }
+
   return (
     <form className="EmployeeForm" onSubmit={onSubmit}>
       {employee && (
@@ -94,9 +106,45 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
       <div className="control">
         <label htmlFor="level">Level:</label>
         <input
-          defaultValue={employee ? employee.level : null}
+          value=
+          {
+            // employee && employee.salary ?  employee.level : null
+            (() => {
+              if(employee && employee.salary){
+                if(employee.salary <= 100){
+                  return "Junior"
+                } else if (employee.salary > 100 && employee.salary <= 300){
+                  return "Medior"
+                } else if (employee.salary > 300 && employee.salary <= 400){
+                  return "Senior"
+                } else if (employee.salary > 400 && employee.salary <= 800){
+                  return "Expert"
+                } else if (employee.salary > 800){
+                  return "Godlike"
+                }
+              } else {
+                return null
+              }
+            })()
+            
+          }
+
           name="level"
           id="level"
+          readOnly
+          ref={levelInputRef}
+          style = {{borderColor: "white"}}
+        />
+      </div>
+
+      <div className="control">
+        <label htmlFor="salary">Salary:</label>
+        <input
+          defaultValue={employee ? employee.salary : null}
+          name="salary"
+          id="salary"
+          type="number"
+          onChange={handleSalaryToLevel}
         />
       </div>
 

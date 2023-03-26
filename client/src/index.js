@@ -61,11 +61,7 @@ const router = createBrowserRouter([
         element: <MissingEmployees />,
       },
       {
-        path: "/employees/name/asc",
-        element: <EmployeeList sortDirection={false}/>,
-      },
-      {
-        path: "/employees/name/desc",
+        path: "/employees/:sortBy/:sortDirection",
         element: <EmployeeList sortDirection={true}/>,
       },
     ],

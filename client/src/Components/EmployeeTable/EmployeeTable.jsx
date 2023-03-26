@@ -1,10 +1,10 @@
-import { Outlet, Link } from "react-router-dom";
-
 import "./EmployeeTable.css";
 
 import * as React from "react";
-
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
+
 import { useAtom } from "jotai";
 import state from "../../AtomStates";
 
@@ -12,9 +12,7 @@ import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
 import TablePagination from "@mui/material/TablePagination";
 
-import { useNavigate } from "react-router-dom";
-
-const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees, sortDirection}) => {
+const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees}) => {
 
   const navigate = useNavigate();
 
@@ -26,7 +24,7 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees, sortDirec
   const [currTenEmployees, setCurrTenEmployees] = useAtom(
     state.currTenEmployees
   );
-  const [nameSortDirection, setNameSortDirection] = useState(sortDirection || true);
+  const [nameSortDirection, setNameSortDirection] = useState(true);
   const [showEquipment, setShowEquipment] = useState(true);
 
   // const [rerender, setRerender] = useState(currTenEmployees);
@@ -74,16 +72,17 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees, sortDirec
     setTogglePagination((prev) => !prev);
   };
 
-  const handleNameSort = () => {
+  const handleSort = (e) => {
     setNameSortDirection((prev) => !prev);
+    let criteria = e.target.innerText.toLowerCase();
 
     setEmployees((employees) => {
       const newArr = [...employees].sort((a, b) => {
-        if (a.name < b.name) {
-          return nameSortDirection ? 1 : -1;
-        }
-        if (a.name > b.name) {
+        if (a[criteria] < b[criteria]) {
           return nameSortDirection ? -1 : 1;
+        }
+        if (a[criteria] > b[criteria]) {
+          return nameSortDirection ? 1 : -1;
         }
 
         // names must be equal
@@ -93,11 +92,9 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees, sortDirec
 
     });
 
+    navigate(`/employees/${criteria}/${nameSortDirection ? "asc" : "desc"}`);
     handleTenEmployees(page);
 
-    navigate(`/employees/name/${nameSortDirection ? "asc" : "desc"}`);
-
-    console.log(equipment);
   };
 
   return (
@@ -105,10 +102,9 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees, sortDirec
       <table>
         <thead>
           <tr>
-            {/* <Link to={`/employees/name/${nameSortDirection ? "asc" : "desc"}`}><div> */}
-            <th onClick={() => handleNameSort()}>Name</th>
-            <th>Level</th>
-            <th>Position</th>
+            <th onClick={(e) => handleSort(e)}>Name</th>
+            <th onClick={(e) => handleSort(e)}>Level</th>
+            <th onClick={(e) => handleSort(e)}>Position</th>
             <th>Present</th>
             <th onClick={() => setShowEquipment((prev) => !prev)}>
               {showEquipment ? "Equipment" : "Show"}

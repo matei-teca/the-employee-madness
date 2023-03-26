@@ -79,9 +79,11 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees}) => {
     setEmployees((employees) => {
       const newArr = [...employees].sort((a, b) => {
         if (a[criteria] < b[criteria]) {
+          // togglePagination && setNameSortDirection(prev => !prev)
           return nameSortDirection ? -1 : 1;
         }
         if (a[criteria] > b[criteria]) {
+          // togglePagination && setNameSortDirection(prev => !prev)
           return nameSortDirection ? 1 : -1;
         }
 

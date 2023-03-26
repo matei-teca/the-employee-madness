@@ -7,7 +7,13 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
   const equipmentInputRef = useRef(null);
   const [currEmployeeEquipment, setCurrEmployeeEquipment] = useState([]);
   const [count, setcount] = useState(0);
-  const levelInputRef = useRef(null)
+  const levelInputRef = useRef(null);
+
+  document.addEventListener("wheel", function(event){
+    if(document.activeElement.type === "number"){
+        document.activeElement.blur();
+    }
+  });
 
   useEffect(() => {
 
@@ -106,7 +112,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
       <div className="control">
         <label htmlFor="level">Level:</label>
         <input
-          defaultValue = {!employee.salary && employee.level}
+          // placeholder = {employee && !employee.salary && employee.level}
           value=
           {
             // employee && employee.salary ?  employee.level : null
@@ -124,7 +130,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
                   return "Godlike"
                 }
               } else {
-                return null
+                return employee.level
               }
             })()
             

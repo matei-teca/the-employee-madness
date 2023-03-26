@@ -156,6 +156,33 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
           id="position"
         />
       </div>
+      <div>
+        {employee ?
+        <div className="control">
+          <label htmlFor="readBooks.name">Add a book name: </label>
+          <input
+            defaultValue={null}
+            name="readBooks.name"
+            id="readBooks.name"
+          />
+          <label htmlFor="readBooks.author">Add the author: </label>
+          <input
+            defaultValue={null}
+            name="readBooks.author"
+            id="readBooks.author"
+          />
+          <div>
+            {employee && employee.readBooks.length > 0 ? 
+          employee.readBooks.map(book => <div>Books read: <div>{book.name}</div></div>) 
+          : "No read books yet."}</div>
+        </div>
+        :
+        <div className="control">
+          <div>{employee && employee.readBooks.length > 0 ? employee.readBooks : "No read books yet."}</div>
+        </div>
+        }
+
+      </div>
 
         {employee ? 
          <div className="control">

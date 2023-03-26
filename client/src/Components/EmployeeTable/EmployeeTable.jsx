@@ -20,7 +20,7 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees}) => {
   const [page, setPage] = useAtom(state.pagination);
   const [rowsPerPage, setRowsPerPage] = useAtom(state.paginationRows);
 
-  const [togglePagination, setTogglePagination] = useState(true);
+  const [togglePagination, setTogglePagination] = useState(false);
   const [currTenEmployees, setCurrTenEmployees] = useAtom(
     state.currTenEmployees
   );

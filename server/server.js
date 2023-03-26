@@ -41,6 +41,18 @@ app.post("/api/employees/", async (req, res, next) => {
 });
 
 app.patch("/api/employees/:id", async (req, res, next) => {
+
+  //indexof readBooks in req.body
+  //const addedReadBooks = req.body.splice
+  //const newReadBooks = employee.addedReadBooks
+  //newReadBooks.push(readBooks)
+
+  // const employee = await EmployeeModel.findOneAndUpdate(
+  //   { _id: req.params.id },
+  //   {readBooks: newReadBooks},
+  //   { new: true }
+  // );
+
   try {
     const employee = await EmployeeModel.findOneAndUpdate(
       { _id: req.params.id },

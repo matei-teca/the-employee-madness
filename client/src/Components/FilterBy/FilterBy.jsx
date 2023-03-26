@@ -48,17 +48,12 @@ export default function FilterBy({ handleTenEmployees }) {
   };
 
   return (
-    <Form className="d-flex">
-      <div>
-        <div style={{ width: "700px", display: "flex", marginLeft: "7vw" }}>
-          
-          <div style={{ display: "flex", flexDirection: "column" }}></div>
           <NavDropdown
             title="Filter by"
             id="basic-nav-dropdown"
-            style={{ width: "17vw", marginLeft: "1vw" }}
+            style = {{fontSize: "1.2rem"}}
           >
-            <div style ={{padding: "20px"}}>
+            <div style ={{paddingInline: "20px"}}>
             <Form.Control
                 id="search-bar--input"
                 type="search"
@@ -67,39 +62,32 @@ export default function FilterBy({ handleTenEmployees }) {
                 if (e.key === "Enter") {
                     e.preventDefault();
                     handleByLevel();
-                    // searchByName(
-                    //   inputValue.current.value,
-                    //   setSearchNames,
-                    //   setProduct
-                    // );
                 }
                 }}
                 ref={inputRef}
                 placeholder="Level / Position"
             />
-
-            <NavDropdown.Item style={{ backgroundColor: "rgba(0,0,0,0)" }}>
-              <Button
+            <div>
+            <NavDropdown.Item style={{ backgroundColor: "rgba(0,0,0,0)", marginLeft:"-15%"  }}>
+              <button
                 onClick={handleByLevel}
                 variant="secondary"
-                style={{ width: "100%", fontSize: "0.8rem" }}
+                style={{ width: "135%", fontSize: "0.8rem", marginTop: "10px" }}
               >
                 by Level
-              </Button>
+              </button>
             </NavDropdown.Item>
-            <NavDropdown.Item style={{ backgroundColor: "rgba(0,0,0,0)" }}>
-              <Button
+            <NavDropdown.Item style={{ backgroundColor: "rgba(0,0,0,0)", marginLeft:"-15%"  }}>
+              <button
                 onClick={handleByPosition}
                 variant="secondary"
-                style={{ width: "100%", fontSize: "0.8rem" }}
+                style={{ width: "135%", fontSize: "0.8rem", marginTop: "-5px" }}
               >
                 by Position
-              </Button>
+              </button>
             </NavDropdown.Item>
             </div>
+            </div>
           </NavDropdown>
-        </div>
-      </div>
-    </Form>
   );
 }

@@ -88,7 +88,7 @@ export default function SortBy({handleTenEmployees}) {
                   <NavDropdown
                 title="Sort by"
                 id="basic-nav-dropdown"
-                style={{ width: "17vw", marginLeft: "7vw" }}
+                style = {{fontSize: "1.2rem", marginTop: "-20%"}}
               >
     <div style={{display:"flex", flexDirection:"column", marginInline: "10%", marginBlock: "3%", width: "200px"}}>
         <button onClick={() => handleSortByName("fname")} style={{width:"80%"}}>First name</button>

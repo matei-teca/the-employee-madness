@@ -4,7 +4,7 @@ import "./Layout.css";
 const Layout = () => (
   <div className="Layout">
     <nav>
-        <ul>
+        <ul style ={{height:"40px", backgroundColor:"navy"}}>
           <li className="grow">
             <Link to="/">The Employee Madness</Link>
           </li>

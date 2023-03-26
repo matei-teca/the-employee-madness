@@ -20,9 +20,14 @@ return (
         <Navbar
           variant="dark"
           expand="lg"
-          style={{ display: "flex", justifyContent: "center", width: "100%" }}
+          style={{ display: "flex", justifyContent: "center" }}
         >
           <Container fluid style={{ display: "flex" }}>
+
+              
+            <div style = {{width:"98vw", display: "flex", justifyContent:"space-between", alignItems:"center"}}>
+
+            <div>
             <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: "100px" }}
@@ -32,11 +37,14 @@ return (
                 <div>{headerName}</div>
               </li>
             </Nav>
-              
+            <Nav>
+              <div style = {{}}>
               <FilterBy handleTenEmployees ={handleTenEmployees}/>
-              
               <SortBy handleTenEmployees ={handleTenEmployees}/>
-                
+              </div>
+            </Nav>
+            </div>
+            <div>   
             <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: "100px"}}
@@ -48,6 +56,8 @@ return (
                 </Link>
               </li>
             </Nav>
+            </div>
+            </div>
           </Container>
         </Navbar>
       </ul>

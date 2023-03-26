@@ -210,7 +210,8 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees}) => {
                       })}
                     </td>
                     <td>
-                      <Link to={`/update/${employee._id}`}>
+                      <div style={{marginRight:"-90px"}}>
+                        <Link to={`/update/${employee._id}`}>
                         <button type="button">Update</button>
                       </Link>
                       <button
@@ -219,6 +220,8 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees}) => {
                       >
                         Delete
                       </button>
+                      </div>
+                      
                     </td>
                   </tr>
                 );

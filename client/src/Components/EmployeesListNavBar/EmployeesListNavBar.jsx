@@ -8,7 +8,11 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 
-const EmployeesListNavBar = ({ headerName }) => (
+import SortBy from "../SortBy/SortBy";
+
+const EmployeesListNavBar = ({ headerName, handleTenEmployees }) => {
+
+return (
   <div className="Layout">
     <nav>
       <ul className="employees-list--nav">
@@ -23,14 +27,14 @@ const EmployeesListNavBar = ({ headerName }) => (
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <li className="grow">
+              <li className="grow" style={{width: "15vw"}}>
                 <div>{headerName}</div>
               </li>
             </Nav>
             <Form className="d-flex">
               <div
               >
-                <div style={{width: "700px", display:"flex"}}>
+                <div style={{width: "700px", display:"flex", marginLeft:"7vw"}}>
                   <Form.Control
                     // ref={inputValue}
                     // list="search-bar--datalist"
@@ -97,9 +101,18 @@ const EmployeesListNavBar = ({ headerName }) => (
                 </div>
               </div>
             </Form>
+              <NavDropdown
+                title="Sort by"
+                id="basic-nav-dropdown"
+                style={{ width: "17vw", marginLeft: "7vw" }}
+              >
+
+                <SortBy handleTenEmployees ={handleTenEmployees}/>
+                
+              </NavDropdown>
             <Nav
               className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px" }}
+              style={{ maxHeight: "100px"}}
               navbarScroll
             >
               <li>
@@ -115,5 +128,6 @@ const EmployeesListNavBar = ({ headerName }) => (
     <Outlet />
   </div>
 );
+}
 
 export default EmployeesListNavBar;

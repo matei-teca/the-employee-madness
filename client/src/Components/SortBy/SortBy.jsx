@@ -83,13 +83,12 @@ export default function SortBy({handleTenEmployees}) {
     }
 
   return (
-    <div style={{display:"flex", marginInline: "10%", marginBlock: "3%"}}>
-        <div>SortBy: </div>
-        <button onClick={() => handleSortByName("fname")}>First name</button>
-        <button onClick={() => handleSortByName("lname")}>Last name</button>
-        <button onClick={() => handleSortByName("mdlname")}>Middle name</button>
-        <button onClick={() => handleSortByStatus("level")}>Level</button>
-        <button onClick={() => handleSortByStatus("position")}>Position</button>
+    <div style={{display:"flex", flexDirection:"column", marginInline: "10%", marginBlock: "3%", width: "200px"}}>
+        <button onClick={() => handleSortByName("fname")} style={{width:"80%"}}>First name</button>
+        <button onClick={() => handleSortByName("lname")} style={{width:"80%"}}>Last name</button>
+        <button onClick={() => handleSortByName("mdlname")} style={{width:"80%"}}>Middle name</button>
+        <button onClick={() => handleSortByStatus("level")} style={{width:"80%"}}>Level</button>
+        <button onClick={() => handleSortByStatus("position")} style={{width:"80%"}}>Position</button>
     </div>
 
   )

@@ -106,6 +106,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
       <div className="control">
         <label htmlFor="level">Level:</label>
         <input
+          defaultValue = {!employee.salary && employee.level}
           value=
           {
             // employee && employee.salary ?  employee.level : null

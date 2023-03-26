@@ -2,6 +2,8 @@ import React from 'react';
 import { useAtom } from "jotai";
 import state from '../../AtomStates';
 
+import NavDropdown from "react-bootstrap/NavDropdown";
+
 export default function SortBy({handleTenEmployees}) {
 
     const [employees, setEmployees] = useAtom(state.employees);
@@ -83,6 +85,11 @@ export default function SortBy({handleTenEmployees}) {
     }
 
   return (
+                  <NavDropdown
+                title="Sort by"
+                id="basic-nav-dropdown"
+                style={{ width: "17vw", marginLeft: "7vw" }}
+              >
     <div style={{display:"flex", flexDirection:"column", marginInline: "10%", marginBlock: "3%", width: "200px"}}>
         <button onClick={() => handleSortByName("fname")} style={{width:"80%"}}>First name</button>
         <button onClick={() => handleSortByName("lname")} style={{width:"80%"}}>Last name</button>
@@ -90,6 +97,7 @@ export default function SortBy({handleTenEmployees}) {
         <button onClick={() => handleSortByStatus("level")} style={{width:"80%"}}>Level</button>
         <button onClick={() => handleSortByStatus("position")} style={{width:"80%"}}>Position</button>
     </div>
+    </NavDropdown>
 
   )
 }

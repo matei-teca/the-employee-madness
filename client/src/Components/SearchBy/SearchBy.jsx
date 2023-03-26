@@ -51,32 +51,33 @@ export default function SearchBy({ handleTenEmployees }) {
     <Form className="d-flex">
       <div>
         <div style={{ width: "700px", display: "flex", marginLeft: "7vw" }}>
-          <Form.Control
-            id="search-bar--input"
-            type="search"
-            style={{ width: "13vw", marginLeft: "5vw" }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                handleByLevel();
-                // searchByName(
-                //   inputValue.current.value,
-                //   setSearchNames,
-                //   setProduct
-                // );
-              }
-            }}
-            ref={inputRef}
-            //   type="text"
-            placeholder="Level / Position"
-            //   className='input'
-          />
+          
           <div style={{ display: "flex", flexDirection: "column" }}></div>
           <NavDropdown
             title="Filter by"
             id="basic-nav-dropdown"
             style={{ width: "17vw", marginLeft: "1vw" }}
           >
+            <div style ={{padding: "20px"}}>
+            <Form.Control
+                id="search-bar--input"
+                type="search"
+                style={{ width: "100%" }}
+                onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    handleByLevel();
+                    // searchByName(
+                    //   inputValue.current.value,
+                    //   setSearchNames,
+                    //   setProduct
+                    // );
+                }
+                }}
+                ref={inputRef}
+                placeholder="Level / Position"
+            />
+
             <NavDropdown.Item style={{ backgroundColor: "rgba(0,0,0,0)" }}>
               <Button
                 onClick={handleByLevel}
@@ -95,6 +96,7 @@ export default function SearchBy({ handleTenEmployees }) {
                 by Position
               </Button>
             </NavDropdown.Item>
+            </div>
           </NavDropdown>
         </div>
       </div>

@@ -35,15 +35,8 @@ return (
               
               <SearchBy handleTenEmployees ={handleTenEmployees}/>
               
-              <NavDropdown
-                title="Sort by"
-                id="basic-nav-dropdown"
-                style={{ width: "17vw", marginLeft: "7vw" }}
-              >
-
-                <SortBy handleTenEmployees ={handleTenEmployees}/>
+              <SortBy handleTenEmployees ={handleTenEmployees}/>
                 
-              </NavDropdown>
             <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: "100px"}}

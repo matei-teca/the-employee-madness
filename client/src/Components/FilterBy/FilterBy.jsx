@@ -9,7 +9,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 
-export default function SearchBy({ handleTenEmployees }) {
+export default function FilterBy({ handleTenEmployees }) {
   const [employees, setEmployees] = useAtom(state.employees);
   const inputRef = useRef(null);
   const [page, setPage] = useAtom(state.pagination);

@@ -6,8 +6,6 @@ import state from "../AtomStates";
 
 import Loading from "../Components/Loading";
 import EmployeeTable from "../Components/EmployeeTable";
-import SearchBy from "../Components/SearchBy";
-import SortBy from "../Components/SortBy";
 import EmployeesListNavBar from "../Components/EmployeesListNavBar";
 
 const fetchEmployees = () => {

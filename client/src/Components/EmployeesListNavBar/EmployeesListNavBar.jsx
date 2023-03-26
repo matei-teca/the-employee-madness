@@ -9,7 +9,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 
 import SortBy from "../SortBy/SortBy";
-import SearchBy from "../SearchBy/SearchBy";
+import FilterBy from "../FilterBy/FilterBy";
 
 const EmployeesListNavBar = ({ headerName, handleTenEmployees }) => {
 
@@ -33,7 +33,7 @@ return (
               </li>
             </Nav>
               
-              <SearchBy handleTenEmployees ={handleTenEmployees}/>
+              <FilterBy handleTenEmployees ={handleTenEmployees}/>
               
               <SortBy handleTenEmployees ={handleTenEmployees}/>
                 

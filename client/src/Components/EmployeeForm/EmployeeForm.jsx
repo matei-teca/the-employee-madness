@@ -18,17 +18,19 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
   useEffect(() => {
 
     (async () => {
-      try {
-        const getResponse = await fetch("http://localhost:8080/api/equipment");
-        const getData = await getResponse.json();
-        setEquipment(await getData);
-
-        const getCurrEquipment = await fetch(`/api/employee/${currEmployeeId}/equipment`);
-        const currEquipmentData = await getCurrEquipment.json();
-        setCurrEmployeeEquipment(currEquipmentData.currEquipmentResponse);
+      if (employee) {
+        try {
+          const getResponse = await fetch("http://localhost:8080/api/equipment");
+          const getData = await getResponse.json();
+          setEquipment(await getData);
   
-      } catch (e) {
-        console.log(e);
+          const getCurrEquipment = await fetch(`/api/employee/${currEmployeeId}/equipment`);
+          const currEquipmentData = await getCurrEquipment.json();
+          setCurrEmployeeEquipment(currEquipmentData.currEquipmentResponse);
+    
+        } catch (e) {
+          console.log(e);
+        }
       }
     })()
 
@@ -130,7 +132,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
                   return "Godlike"
                 }
               } else {
-                return employee.level
+                return employee && employee.level
               }
             })()
             
@@ -184,9 +186,11 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
           : "No read books yet."}</div>
         </div>
         :
-        <div className="control">
-          <div>{employee && employee.readBooks.length > 0 ? employee.readBooks : "No read books yet."}</div>
-        </div>
+        null
+        // <div className="control">
+        //   <div>{employee && employee.readBooks.length > 0 ? employee.readBooks : "No read books yet."}</div>
+        // </div>
+        
         }
 
       </div>
@@ -227,14 +231,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
 
         </div>
         : 
-        <div className="control">
-          <label htmlFor="equipment">Equipment:</label>
-          <input
-          defaultValue={null}
-          name="equipment"
-          id="equipment"
-          />
-        </div>
+        null
       }
 
       <div className="buttons">

@@ -1,10 +1,9 @@
 import "./EmployeeForm.css";
 import React, {useState, useEffect, useRef} from "react";
 
-
 const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) => {
 
-  const [equipments, setEquipments] = useState(null);
+  const [equipment, setEquipment] = useState(null);
   const equipmentInputRef = useRef(null);
   const [currEmployeeEquipment, setCurrEmployeeEquipment] = useState([]);
   const [count, setcount] = useState(0)
@@ -13,9 +12,9 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
 
     (async () => {
       try {
-        const getResponse = await fetch("http://localhost:8080/api/equipments");
+        const getResponse = await fetch("http://localhost:8080/api/equipment");
         const getData = await getResponse.json();
-        setEquipments(await getData);
+        setEquipment(await getData);
 
         const getCurrEquipment = await fetch(`/api/employee/${currEmployeeId}/equipment`);
         const currEquipmentData = await getCurrEquipment.json();
@@ -46,23 +45,35 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
     const inputValue = equipmentInputRef.current.value;
 
     let selectedEquipmentId;
-    equipments.forEach(item => {
+    equipment.forEach(item => {
       if(item.name === inputValue){
         selectedEquipmentId = item._id;
       }
     })
 
-    fetch(`/api/equip/employees/${currEmployeeId}`, {
-      method: "PATCH",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({selectedEquipmentId})
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
+    // console.log(currEmployeeEquipment);
+    // console.log(selectedEquipmentId);
 
-    setcount(count + 1);
-      
+    let currEmployeeEquipmentIds =[];
+    currEmployeeEquipment.map(equipmentItem => {
+      currEmployeeEquipmentIds.push(equipmentItem._id);
+    })
+    
+    if (currEmployeeEquipmentIds.includes(selectedEquipmentId) === false)
+    {
+      fetch(`/api/equip/employees/${currEmployeeId}`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({selectedEquipmentId})
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
+  
+      setcount(count + 1);
+    } else {
+      alert("This equipment is already assigned to the employee")
+    }
   }
 
   return (
@@ -124,7 +135,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
               style ={{width: "200px"}}
             />
             <datalist id = "equipmentDataList">
-              {equipments?.map(item => {
+              {equipment?.map(item => {
                 return <option key={item._id} value={item.name}/>
               })}
             </datalist>
@@ -143,8 +154,6 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
           />
         </div>
       }
-
-
 
       <div className="buttons">
         <button type="submit" disabled={disabled}>

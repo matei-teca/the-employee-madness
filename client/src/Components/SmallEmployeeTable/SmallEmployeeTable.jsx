@@ -21,7 +21,7 @@ return (
           <th>Level</th>
           <th>Position</th>
           <th>Present</th>
-          <th onClick={() => console.log("nthing")}>Equipment</th>
+          {/* <th onClick={() => console.log("nthing")}>Equipment</th> */}
           <th />
         </tr>
       </thead>

@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
+
 import "./EmployeeTable.css";
 
 import * as React from "react";
@@ -11,7 +12,11 @@ import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
 import TablePagination from "@mui/material/TablePagination";
 
-const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees }) => {
+import { useNavigate } from "react-router-dom";
+
+const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees, sortDirection}) => {
+
+  const navigate = useNavigate();
 
   const [employees, setEmployees] = useAtom(state.employees);
   const [page, setPage] = useAtom(state.pagination);
@@ -21,7 +26,7 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees }) => {
   const [currTenEmployees, setCurrTenEmployees] = useAtom(
     state.currTenEmployees
   );
-  const [nameSortDirection, setNameSortDirection] = useState(false);
+  const [nameSortDirection, setNameSortDirection] = useState(sortDirection || true);
   const [showEquipment, setShowEquipment] = useState(true);
 
   // const [rerender, setRerender] = useState(currTenEmployees);
@@ -75,19 +80,22 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees }) => {
     setEmployees((employees) => {
       const newArr = [...employees].sort((a, b) => {
         if (a.name < b.name) {
-          return nameSortDirection ? -1 : 1;
+          return nameSortDirection ? 1 : -1;
         }
         if (a.name > b.name) {
-          return nameSortDirection ? 1 : -1;
+          return nameSortDirection ? -1 : 1;
         }
 
         // names must be equal
         return 0;
       });
       return newArr;
+
     });
 
     handleTenEmployees(page);
+
+    navigate(`/employees/name/${nameSortDirection ? "asc" : "desc"}`);
 
     console.log(equipment);
   };
@@ -97,6 +105,7 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees }) => {
       <table>
         <thead>
           <tr>
+            {/* <Link to={`/employees/name/${nameSortDirection ? "asc" : "desc"}`}><div> */}
             <th onClick={() => handleNameSort()}>Name</th>
             <th>Level</th>
             <th>Position</th>

@@ -20,13 +20,15 @@ const deleteEmployee = (id) => {
   );
 };
 
-const EmployeeList = () => {
+const EmployeeList = ({sortDirection}) => {
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useAtom(state.employees);
   const [currTenEmployees, setCurrTenEmployees] = useAtom(
     state.currTenEmployees
   );
   const [rowsPerPage, setRowsPerPage] = useAtom(state.paginationRows);
+
+  // console.log(sortDirection);
 
   const handleTenEmployees = (currPage) => {
     if (employees.length > 9) {
@@ -100,6 +102,7 @@ const EmployeeList = () => {
         onDelete={handleDelete}
         handleCheckBox={handleCheckBox}
         handleTenEmployees={handleTenEmployees}
+        sortDirection={sortDirection}
       />
     </>
   );

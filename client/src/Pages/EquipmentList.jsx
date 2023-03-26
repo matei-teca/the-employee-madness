@@ -13,12 +13,10 @@ const EquipmentList = () => {
   // }
 
   return ( <> 
-    <EquipmentTable/>
-    
-    <div style={{display: "flex", justifyContent: "center"}}>
-      <h3>This is the Equipment</h3>
+    <div style={{display: "flex", marginLeft: "10px"}}>
+      <h3>This is the Equipment:</h3>
     </div>
-    
+    <EquipmentTable/>
   </>)
 };
 

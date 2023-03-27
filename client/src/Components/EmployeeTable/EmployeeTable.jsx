@@ -109,10 +109,10 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees}) => {
             <th onClick={(e) => handleSort(e)}>Position</th>
             <th onClick={() => navigate(`/missing`)}>Present</th>
             <th onClick={() => setShowEquipment((prev) => !prev)}>
-              {showEquipment ? "Equipment" : "Show"}
+              {showEquipment ? "Equipment" : <div style = {{border:"0.1px solid black", width: "60%", textAlign:"center", cursor: "pointer"}}>Show Equipment</div>}
             </th>
             <th>Fav Brand</th>
-          </tr>
+          </tr> 
         </thead>
         <tbody>
           {togglePagination
@@ -232,7 +232,7 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees}) => {
         <Stack spacing={2}>
           <TablePagination
             component="div"
-            count={100}
+            count={employees.length}
             page={page}
             onPageChange={handleChangePage}
             rowsPerPage={rowsPerPage}

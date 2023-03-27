@@ -24,11 +24,6 @@ app.get("/api/employees/", async (req, res) => {
   return res.json(employees);
 });
 
-app.get("/api/employees/:id", async (req, res) => {
-  const employee = await EmployeeModel.findById(req.params.id);
-  return res.json(employee);
-});
-
 app.post("/api/employees/", async (req, res, next) => {
   const employee = req.body;
 
@@ -38,6 +33,11 @@ app.post("/api/employees/", async (req, res, next) => {
   } catch (err) {
     return next(err);
   }
+});
+
+app.get("/api/employees/:id", async (req, res) => {
+  const employee = await EmployeeModel.findById(req.params.id);
+  return res.json(employee);
 });
 
 app.patch("/api/employees/:id", async (req, res, next) => {

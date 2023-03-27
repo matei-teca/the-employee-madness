@@ -97,7 +97,8 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
   }
 
   return (
-    <form className="EmployeeForm" onSubmit={onSubmit}>
+    <div style = {{display: "flex", justifyContent:"center"}}>
+    <form className="EmployeeForm" onSubmit={onSubmit} style ={{width: "40%"}}>
       {employee && (
         <input type="hidden" name="_id" defaultValue={employee._id} />
       )}
@@ -244,6 +245,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, currEmployeeId }) 
         </button>
       </div>
     </form>
+    </div>
   );
 };
 

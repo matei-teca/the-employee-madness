@@ -93,7 +93,7 @@ const EmployeeList = ({sortDirection}) => {
 
   return (
     <>
-      <EmployeesListNavBar headerName={"Employees List"} handleTenEmployees={handleTenEmployees}/>
+      <EmployeesListNavBar headerName={"Employee List"} handleTenEmployees={handleTenEmployees}/>
       <EmployeeTable
         onDelete={handleDelete}
         handleCheckBox={handleCheckBox}

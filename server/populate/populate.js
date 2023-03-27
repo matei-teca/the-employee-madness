@@ -30,7 +30,7 @@ const populateEmployees = async () => {
     name,
     level: pick(levels),
     position: pick(positions),
-    color: pick(colorsList)
+    color: colorsList.slice(0, Math.floor(Math.random() * colorsList.length - 1)).sort(()=>Math.random() - 0.5)
   }));
 
   await EmployeeModel.create(...employees);

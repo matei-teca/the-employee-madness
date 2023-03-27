@@ -14,11 +14,11 @@ const EmployeeSchema = new Schema({
   present: Boolean,
   equipment: Array,
   favBrand: Schema.Types.ObjectId,
-  color: {
+  color: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Color",
     
-  },
+  }],
   salary: Number,
   readBooks: [{
     name: String,

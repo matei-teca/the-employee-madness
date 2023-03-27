@@ -25,7 +25,7 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees}) => {
     state.currTenEmployees
   );
   const [nameSortDirection, setNameSortDirection] = useState(true);
-  const [showEquipment, setShowEquipment] = useState(true);
+  const [showEquipment, setShowEquipment] = useState(false);
 
   // const [rerender, setRerender] = useState(currTenEmployees);
 
@@ -35,7 +35,7 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees}) => {
   const equipmentColRef = useRef(null);
 
   const fetchEquipment = async () => {
-    const getResponse = await fetch("http://localhost:8080/api/equipment");
+    const getResponse = await fetch("http://localhost:8080/api/equipment/unsorted");
     const getData = await getResponse.json();
     setEquipment(await getData);
   };
@@ -107,7 +107,7 @@ const EmployeeTable = ({ onDelete, handleCheckBox, handleTenEmployees}) => {
             <th onClick={(e) => handleSort(e)}>Name</th>
             <th onClick={(e) => handleSort(e)}>Level</th>
             <th onClick={(e) => handleSort(e)}>Position</th>
-            <th>Present</th>
+            <th onClick={() => navigate(`/missing`)}>Present</th>
             <th onClick={() => setShowEquipment((prev) => !prev)}>
               {showEquipment ? "Equipment" : "Show"}
             </th>

@@ -142,6 +142,11 @@ app.get("/api/equipment", async (req, res) => {
   res.json(equipment)
 })
 
+app.get("/api/equipment/unsorted", async (req, res) => {
+  const equipment = await EquipmentModel.find();
+  res.json(equipment)
+})
+
 app.get("/api/brands", async (req, res) => {
   const brands = await BrandModel.find().sort({ created: "desc" });
   res.json(brands)

@@ -107,13 +107,13 @@ app.patch("/api/assign/brand", async (req, res, next) => {
 })
 
 app.delete("/api/employees/:id", async (req, res, next) => {
-  try {
-    const employee = await EmployeeModel.findById(req.params.id);
-    const deleted = await employee.delete();
-    return res.json(deleted);
-  } catch (err) {
-    return next(err);
-  }
+    try {
+      const employee = await EmployeeModel.findById(req.params.id);
+      const deleted = await employee.delete();
+      return res.json(deleted);
+    } catch (err) {
+      return next(err);
+    }
 });
 
 app.post("/api/equipment",(req, res) => {

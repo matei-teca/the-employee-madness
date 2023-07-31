@@ -15,6 +15,7 @@ const EquipmentList = () => {
   return ( <> 
     <div style={{display: "flex", marginLeft: "10px"}}>
       <h3>This is the Equipment:</h3>
+      <div>(this feature is not finished)</div>
     </div>
     <EquipmentTable/>
   </>)

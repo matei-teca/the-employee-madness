@@ -60,4 +60,12 @@ npm start
 And the create-react-app react-scripts package will start your frontend on the 3000 port and you can visit the http://localhost:3000 on your preferred browser.
 
 
-<img width="1439" alt="image" src="https://github.com/matei-teca/the-employee-madness/assets/116873451/adbf9be1-f229-4bd4-90fd-0aaff0ddda7b">
+<img width="1440" alt="image" src="https://github.com/matei-teca/the-employee-madness/assets/116873451/a0299a14-65c3-4750-ae30-60a34e4c3050">
+
+
+<img width="1440" alt="image" src="https://github.com/matei-teca/the-employee-madness/assets/116873451/9e03041f-8a47-4631-9231-4e7907daf752">
+
+<img width="1440" alt="image" src="https://github.com/matei-teca/the-employee-madness/assets/116873451/638f355f-edb3-41c1-9cf0-c184617fad4d">
+
+
+

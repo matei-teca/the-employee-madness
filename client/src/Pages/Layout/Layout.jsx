@@ -18,11 +18,11 @@ return(
         <ul style ={{height:"40px", backgroundColor:"navy"}}>
           <li className="grow">
             <Link to="/">The Employee Madness</Link>
-            <img src="https://media.tenor.com/images/a1d1ba09fbd871e0bc44990bab058d8d/tenor.png" 
+{/*             <img src="https://media.tenor.com/images/a1d1ba09fbd871e0bc44990bab058d8d/tenor.png" 
             width={25} height={25} 
             style ={{marginLeft: "10px", borderRadius: "450%"}}
             onDoubleClick = {(e) => handleImgDbClick(e)}
-            />
+            /> */}
           </li>
           {/* <li>
             <Link to="/create">

@@ -1,5 +1,7 @@
 # Employee Data
 
+This is an individual study project at Codecool.
+
 ## Server side
 
 ### Install dependencies
@@ -56,3 +58,6 @@ npm start
 ```
 
 And the create-react-app react-scripts package will start your frontend on the 3000 port and you can visit the http://localhost:3000 on your preferred browser.
+
+
+<img width="1439" alt="image" src="https://github.com/matei-teca/the-employee-madness/assets/116873451/adbf9be1-f229-4bd4-90fd-0aaff0ddda7b">
